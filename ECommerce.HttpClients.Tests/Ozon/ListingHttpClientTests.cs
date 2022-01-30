@@ -1,0 +1,24 @@
+﻿using FluentAssertions;
+using System.Threading.Tasks;
+using Xunit;
+
+namespace ECommerce.HttpClients.Tests.Ozon
+{
+    public class ListingHttpClientTests
+    {
+        private readonly HttpContext _httpContext;
+
+        public ListingHttpClientTests(HttpContext httpContext)
+        {
+            _httpContext = httpContext;
+        }
+
+        [Fact]
+        public async Task GetListingAsync_WithCategoryUrlAndPageParams_ReturnNotBeNullResponse()
+        {
+            var response = await _httpContext.Ozon.Listing.GetListingAsync("/category/noutbuki-15692/", 1);
+
+            response.Should().NotBeNull();
+        }
+    }
+}

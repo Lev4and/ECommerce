@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ECommerce.HttpClients\ECommerce.HttpClients.csproj" />
+    <ProjectReference Include="..\ECommerce.Model\ECommerce.Model.csproj" />
+    <ProjectReference Include="..\ECommerce.Parsers\ECommerce.Parsers.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Import\Marketplace\Ozon\" />
+  </ItemGroup>
+
+</Project>
