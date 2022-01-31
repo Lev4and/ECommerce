@@ -15,9 +15,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ECommerce.Parsers.Tests", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ECommerce.Model", "ECommerce.Model\ECommerce.Model.csproj", "{CD410E13-E26A-4175-904A-B45E77DDFC11}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ECommerce.Services", "ECommerce.Services\ECommerce.Services.csproj", "{253C9671-9407-4A54-B992-FBCB3EBFCDE4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ECommerce.Services", "ECommerce.Services\ECommerce.Services.csproj", "{253C9671-9407-4A54-B992-FBCB3EBFCDE4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ECommerce.Services.Tests", "ECommerce.Services.Tests\ECommerce.Services.Tests.csproj", "{B69F20DD-8F00-4865-8796-C7537E32CAC8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ECommerce.Services.Tests", "ECommerce.Services.Tests\ECommerce.Services.Tests.csproj", "{B69F20DD-8F00-4865-8796-C7537E32CAC8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ECommerce.ResourceWebApplication", "ECommerce.ResourceWebApplication\ECommerce.ResourceWebApplication.csproj", "{1873F7D3-1B5C-4B06-95A9-7270BE22C02B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,6 +59,10 @@ Global
 		{B69F20DD-8F00-4865-8796-C7537E32CAC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B69F20DD-8F00-4865-8796-C7537E32CAC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B69F20DD-8F00-4865-8796-C7537E32CAC8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1873F7D3-1B5C-4B06-95A9-7270BE22C02B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1873F7D3-1B5C-4B06-95A9-7270BE22C02B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1873F7D3-1B5C-4B06-95A9-7270BE22C02B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1873F7D3-1B5C-4B06-95A9-7270BE22C02B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

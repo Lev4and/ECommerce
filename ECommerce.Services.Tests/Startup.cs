@@ -1,8 +1,9 @@
 ﻿using ECommerce.HttpClients;
-using ECommerce.HttpClients.Ozon;
 using ECommerce.Parsers;
 using ECommerce.Parsers.Ozon;
 using Microsoft.Extensions.DependencyInjection;
+using OzonHttpClients = ECommerce.HttpClients.Ozon;
+using ResourceWebAppHttpClients = ECommerce.HttpClients.ResourceWebApp;
 
 namespace ECommerce.Services.Tests
 {
@@ -10,11 +11,16 @@ namespace ECommerce.Services.Tests
     {
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSingleton<CategoryHttpClient>();
-            services.AddSingleton<HomeHttpClient>();
-            services.AddSingleton<ListingHttpClient>();
-            services.AddSingleton<ProductHttpClient>();
-            services.AddSingleton<OzonHttpContext>();
+            services.AddSingleton<OzonHttpClients.CategoryHttpClient>();
+            services.AddSingleton<OzonHttpClients.HomeHttpClient>();
+            services.AddSingleton<OzonHttpClients.ListingHttpClient>();
+            services.AddSingleton<OzonHttpClients.ProductHttpClient>();
+            services.AddSingleton<OzonHttpClients.OzonHttpContext>();
+
+            services.AddSingleton<ResourceWebAppHttpClients.CatalogHttpClient>();
+            services.AddSingleton<ResourceWebAppHttpClients.CategoryHttpClient>();
+            services.AddSingleton<ResourceWebAppHttpClients.ProductHttpClient>();
+            services.AddSingleton<ResourceWebAppHttpClients.ResourceWebAppHttpContext>();
 
             services.AddSingleton<HttpContext>();
 

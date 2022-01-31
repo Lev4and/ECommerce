@@ -16,7 +16,7 @@ namespace ECommerce.Model.JsonConverters
 
         public override void WriteJson(JsonWriter writer, object? value, JsonSerializer serializer)
         {
-            throw new NotImplementedException();
+            writer.WriteValue(JsonConvert.SerializeObject(value));
         }
     }
 }
