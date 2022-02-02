@@ -10,6 +10,10 @@ namespace ECommerce.DesktopApplication.ViewModels.Locators
     {
         private static ServiceProvider _provider;
 
+        public CatalogViewModel CatalogViewModel => _provider.GetService<CatalogViewModel>();
+
+        public CategoryViewModel CategoryViewModel => _provider.GetService<CategoryViewModel>();
+
         public MainWindowViewModel MainWindowViewModel => _provider.GetService<MainWindowViewModel>();
 
         public MenuViewModel MenuViewModel => _provider.GetService<MenuViewModel>();
@@ -31,6 +35,8 @@ namespace ECommerce.DesktopApplication.ViewModels.Locators
 
             services.AddSingleton<HttpClients.HttpContext>();
 
+            services.AddTransient<CatalogViewModel>();
+            services.AddTransient<CategoryViewModel>();
             services.AddTransient<MainWindowViewModel>();
             services.AddTransient<MenuViewModel>();
 

@@ -1,5 +1,7 @@
 ﻿using DevExpress.Mvvm;
 using ECommerce.DesktopApplication.Services;
+using ECommerce.DesktopApplication.Views.Pages.Catalog;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -25,9 +27,19 @@ namespace ECommerce.DesktopApplication.ViewModels
             IsLeftDrawerOpen = false;
         });
 
+        public ICommand Loaded => new AsyncCommand(() =>
+        {
+            return LoadedAsync();
+        });
+
         public ICommand Exit => new DelegateCommand(() =>
         {
             Application.Current.Shutdown();
         });
+
+        private async Task LoadedAsync()
+        {
+            _menuPageService.ChangePage(new Catalog());
+        }
     }
 }

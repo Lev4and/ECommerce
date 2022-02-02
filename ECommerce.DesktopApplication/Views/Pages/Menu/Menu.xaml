@@ -20,6 +20,11 @@
         <c:BoolToCollapsedVisibility x:Key="BoolToCollapsedVisibility" />
         <c:BackBoolToCollapsedVisibility x:Key="BackBoolToCollapsedVisibility" />
     </Page.Resources>
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding Path=Loaded}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
     <Grid>
         <mdt:ColorZone
             Height="70"
