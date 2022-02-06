@@ -20,6 +20,9 @@
 
                 <ResourceDictionary Source="/ECommerce.DesktopApplication;component/Views/Styles/Brushes.xaml" />
 
+                <ResourceDictionary Source="/ECommerce.DesktopApplication;component/Views/Templates/ProductItemTemplates.xaml" />
+                <ResourceDictionary Source="/ECommerce.DesktopApplication;component/Views/Templates/ButtonTemplates.xaml" />
+
                 <ResourceDictionary Source="/ECommerce.DesktopApplication;component/Views/Styles/DataGrid.xaml" />
                 <ResourceDictionary Source="/ECommerce.DesktopApplication;component/Views/Styles/Button.xaml" />
             </ResourceDictionary.MergedDictionaries>

@@ -1,27 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+﻿using System.Windows.Controls;
 
 namespace ECommerce.DesktopApplication.Views.Pages.Category
 {
-    /// <summary>
-    /// Логика взаимодействия для Category.xaml
-    /// </summary>
     public partial class Category : Page
     {
-        public Category()
+        public string CategoryId { get; }
+
+        public Category(string categoryId)
         {
+            CategoryId = categoryId;
+
             InitializeComponent();
         }
     }

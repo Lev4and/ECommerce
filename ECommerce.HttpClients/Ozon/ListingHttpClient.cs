@@ -25,7 +25,7 @@ namespace ECommerce.HttpClients.Ozon
             UseHeaders(OzonHeaders.JsonHeaders);
             UseCookie();
 
-            return await (await Client.GetAsync($"{OzonRoutes.ListingQuery}?url={categoryUrl}&page={page}&sorting=price&" +
+            return await (await Client.GetAsync($"{OzonRoutes.ListingQuery}?url={categoryUrl}&page={page}&" +
                 $"page_changed=true")).GetStringResultAsync();
         }
 

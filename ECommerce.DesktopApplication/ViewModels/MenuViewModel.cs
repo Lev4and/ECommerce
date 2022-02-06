@@ -32,6 +32,11 @@ namespace ECommerce.DesktopApplication.ViewModels
             return LoadedAsync();
         });
 
+        public ICommand Catalog => new DelegateCommand(() =>
+        {
+            _menuPageService.ChangePage(new Catalog());
+        });
+
         public ICommand Exit => new DelegateCommand(() =>
         {
             Application.Current.Shutdown();

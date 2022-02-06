@@ -88,6 +88,14 @@
                                 <StackPanel Margin="10">
                                     <Grid>
                                         <uc:MenuButton
+                                            x:Name="CatalogButton"
+                                            HorizontalContentAlignment="Left"
+                                            Command="{Binding Path=Catalog}"
+                                            Kind="FormatListBulleted"
+                                            Text="Каталог" />
+                                    </Grid>
+                                    <Grid>
+                                        <uc:MenuButton
                                             x:Name="ExitButton"
                                             HorizontalContentAlignment="Left"
                                             Command="{Binding Path=Exit}"

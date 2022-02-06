@@ -1,22 +1,18 @@
-﻿using System;
+﻿using ECommerce.Model.Marketplace.Ozon.Types;
+using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Windows.Data;
-using System.Windows.Media.Imaging;
 
 namespace ECommerce.DesktopApplication.Converters
 {
-    [ValueConversion(typeof(string), typeof(BitmapImage))]
-    public class UrlToBitmapImage : IValueConverter
+    [ValueConversion(typeof(List<MainState>), typeof(string))]
+    public class MainStateToProductTitle : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            var bitmap = new BitmapImage();
-
-            bitmap.BeginInit();
-            bitmap.UriSource = new Uri($"{System.Convert.ToString(value)}", UriKind.RelativeOrAbsolute);
-            bitmap.EndInit();
-
-            return bitmap;
+            return ((List<MainState>)value)?.Find(state => state.Id == "name")?.Atom?.TextAtom?.Text ?? 
+                "Название продукта неизвестно";
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
