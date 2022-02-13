@@ -27,8 +27,8 @@ builder.Services.AddSingleton<ParserContext>();
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("CorsPolicy", builder =>
-        builder.AllowAnyOrigin().AllowAnyMethod()
-            .AllowAnyHeader());
+        builder.WithOrigins("http://localhost:8080").AllowAnyMethod()
+            .AllowAnyHeader().AllowCredentials());
 });
 
 builder.Services.AddControllersWithViews()
@@ -52,7 +52,7 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseRouting();
+app.UseCors("CorsPolicy");
 app.UseAuthorization();
 app.MapControllers();
-app.UseCors();
 app.Run();

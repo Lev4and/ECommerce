@@ -21,7 +21,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ECommerce.Services.Tests", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ECommerce.ResourceWebApplication", "ECommerce.ResourceWebApplication\ECommerce.ResourceWebApplication.csproj", "{1873F7D3-1B5C-4B06-95A9-7270BE22C02B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ECommerce.DesktopApplication", "ECommerce.DesktopApplication\ECommerce.DesktopApplication.csproj", "{B9FECD39-52BA-4599-BEC5-E3C8D872B670}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ECommerce.DesktopApplication", "ECommerce.DesktopApplication\ECommerce.DesktopApplication.csproj", "{B9FECD39-52BA-4599-BEC5-E3C8D872B670}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

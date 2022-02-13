@@ -1,4 +1,5 @@
 ﻿using ECommerce.HttpClients.Ozon.ResponseModels;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
 
@@ -6,6 +7,7 @@ namespace ECommerce.ResourceWebApplication.Controllers
 {
     [ApiController]
     [Route("api/category")]
+    [EnableCors("CorsPolicy")]
     [Produces("application/json")]
     public class CategoryController : ControllerBase
     {
