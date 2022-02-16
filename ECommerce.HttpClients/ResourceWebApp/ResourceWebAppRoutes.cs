@@ -6,6 +6,10 @@
 
         public const string CatalogPath = "catalog/";
 
+        public const string SearchSuggestionsQuery = "searchSuggestions";
+
+        public const string AllFiltersQuery = "allFilters";
+
         public const string CategoryPath = "category/";
 
         public const string ProductPath = "product/";

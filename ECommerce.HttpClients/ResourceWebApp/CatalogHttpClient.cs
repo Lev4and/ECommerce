@@ -24,5 +24,32 @@ namespace ECommerce.HttpClients.ResourceWebApp
 
             return await (await Client.GetAsync($"?category_url={categoryUrl}&p={page}")).GetJsonResultAsync<Listing>();
         }
+
+        public async Task<SearchSuggestions> GetSearchSuggestionsAsync(string categoryUrl, string searchString)
+        {
+            if (string.IsNullOrEmpty(categoryUrl))
+            {
+                throw new ArgumentNullException("categoryUrl", "The category url must not be empty.");
+            }
+
+            if (string.IsNullOrEmpty(searchString))
+            {
+                throw new ArgumentNullException("searchString", "The search string must not be empty.");
+            }
+
+            return await (await Client.GetAsync($"{ResourceWebAppRoutes.SearchSuggestionsQuery}?" +
+                $"category_url={categoryUrl}&q={searchString}")).GetJsonResultAsync<SearchSuggestions>();
+        }
+
+        public async Task<AllFilters> GetAllFiltersAsync(string categoryUrl)
+        {
+            if (string.IsNullOrEmpty(categoryUrl))
+            {
+                throw new ArgumentNullException("categoryUrl", "The category url must not be empty.");
+            }
+
+            return await (await Client.GetAsync($"{ResourceWebAppRoutes.AllFiltersQuery}?" +
+                $"category_url={categoryUrl}")).GetJsonResultAsync<AllFilters>();
+        }
     }
 }

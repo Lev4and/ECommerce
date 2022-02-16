@@ -29,5 +29,29 @@ namespace ECommerce.ResourceWebApplication.Controllers
 
             return BadRequest();
         }
+
+        [HttpGet("searchSuggestions")]
+        [ProducesResponseType(typeof(SearchSuggestions), 200)]
+        public async Task<IActionResult> SearchSuggestions([Required][FromQuery(Name = "category_url")] string categoryUrl, [Required][FromQuery(Name = "q")] string searchString)
+        {
+            if (!string.IsNullOrEmpty(categoryUrl) && !string.IsNullOrEmpty(searchString))
+            {
+                return Ok(await _httpContext.Ozon.Listing.GetSearchSuggestionsAsync(categoryUrl, searchString));
+            }
+
+            return BadRequest();
+        }
+
+        [HttpGet("allFilters")]
+        [ProducesResponseType(typeof(AllFilters), 200)]
+        public async Task<IActionResult> AllFilters([Required][FromQuery(Name = "category_url")] string categoryUrl)
+        {
+            if (!string.IsNullOrEmpty(categoryUrl))
+            {
+                return Ok(await _httpContext.Ozon.Listing.GetAllFiltersAsync(categoryUrl));
+            }
+
+            return BadRequest();
+        }
     }
 }
