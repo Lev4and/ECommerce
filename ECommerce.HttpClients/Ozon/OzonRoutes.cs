@@ -16,6 +16,8 @@
 
         public const string ListingQuery = "page/json/v2";
 
+        public const string AllFiltersQuery = "page/json/v2?url=/modal/allFilters";
+
         public const string SearchSuggestionsQuery = "page/json/v2?url=/searchSuggestions/";
 
         public const string ProductPath = "api/composer-api.bx/";

@@ -77,5 +77,29 @@ namespace ECommerce.HttpClients.Ozon
 
             return (await GetStringSearchSuggestionsAsync(categoryUrl, searchString)).GetJsonResult<SearchSuggestions>();
         }
+
+        public async Task<string> GetStringAllFiltersAsync(string categoryUrl)
+        {
+            if (string.IsNullOrEmpty(categoryUrl))
+            {
+                throw new ArgumentNullException("categoryUrl", "The category url must not be empty.");
+            }
+
+            UseHeaders(OzonHeaders.JsonHeaders);
+            UseCookie();
+
+            return await (await Client.GetAsync($"{OzonRoutes.AllFiltersQuery}{categoryUrl}" +
+                $"?page_changed=true")).GetStringResultAsync();
+        }
+
+        public async Task<AllFilters> GetAllFiltersAsync(string categoryUrl)
+        {
+            if (string.IsNullOrEmpty(categoryUrl))
+            {
+                throw new ArgumentNullException("categoryUrl", "The category url must not be empty.");
+            }
+
+            return (await GetStringAllFiltersAsync(categoryUrl)).GetJsonResult<AllFilters>();
+        }
     }
 }
