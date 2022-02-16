@@ -20,5 +20,13 @@ namespace ECommerce.HttpClients.Tests.Ozon
 
             response.Should().NotBeNull();
         }
+
+        [Fact]
+        public async Task GetSearchSuggestionsAsync_WithCategoryUrlAndSearchStringParams_ReturnNotBeNullResponse()
+        {
+            var response = await _httpContext.Ozon.Listing.GetSearchSuggestionsAsync("/category/noutbuki-15692/", "MSI");
+
+            response.Should().NotBeNull();
+        }
     }
 }
