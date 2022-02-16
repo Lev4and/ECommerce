@@ -51,6 +51,7 @@ export default {
 #header {
   align-items: center;
   display: flex;
+  margin-top: 16px;
   margin-bottom: 16px;
 }
 #header h1 {

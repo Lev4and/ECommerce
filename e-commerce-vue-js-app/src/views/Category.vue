@@ -2,9 +2,7 @@
   <div id="category">
     <Breadcrumb :category="category" />
     <Header :category="category" />
-    <template v-for="tag in tagList">
-      <a-tag :key="tag.link">{{ tag.name }}</a-tag>
-    </template>
+    <TagList :category="category" />
     <a-layout>
       <a-layout-sider width="300" style="background: #fff">
         <a-collapse>
@@ -122,6 +120,7 @@ import API from "@/api"
 import { getWidget } from "@/services/utils/widgetsUtils"
 import Breadcrumb from "@/components/category/Breadcrumb"
 import Header from "@/components/category/Header"
+import TagList from "@/components/category/TagList"
 
 export default {
   name: "Category",
@@ -129,6 +128,7 @@ export default {
   components: {
     Breadcrumb,
     Header,
+    TagList,
   },
 
   data: () => ({
@@ -181,9 +181,6 @@ export default {
     },
     searchResultsFilters() {
       return getWidget(this.widgets, "searchResultsFilters")
-    },
-    tagList() {
-      return getWidget(this.widgets, "tagList")?.items || []
     },
     categories() {
       return this.mapCategories(this.searchResultsFilters?.categories)
