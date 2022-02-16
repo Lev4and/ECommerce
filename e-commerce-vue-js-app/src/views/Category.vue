@@ -1,9 +1,7 @@
 <template>
   <div id="category">
-    <Breadcrumb :catalog="catalog" />
-    <h1>
-      {{ categoryName }}<sup>{{ totalFound }}</sup>
-    </h1>
+    <Breadcrumb :category="category" />
+    <Header :category="category" />
     <template v-for="tag in tagList">
       <a-tag :key="tag.link">{{ tag.name }}</a-tag>
     </template>
@@ -123,12 +121,14 @@ import { map as _map } from "lodash"
 import API from "@/api"
 import { getWidget } from "@/services/utils/widgetsUtils"
 import Breadcrumb from "@/components/category/Breadcrumb"
+import Header from "@/components/category/Header"
 
 export default {
   name: "Category",
 
   components: {
     Breadcrumb,
+    Header,
   },
 
   data: () => ({
@@ -176,17 +176,11 @@ export default {
     categoryName() {
       return this.currentCategory?.name || ""
     },
-    catalogResultsHeader() {
-      return getWidget(this.widgets, "catalogResultsHeader")
-    },
     searchResults() {
       return getWidget(this.widgets, "searchResultsV2")
     },
     searchResultsFilters() {
       return getWidget(this.widgets, "searchResultsFilters")
-    },
-    totalFound() {
-      return this.catalogResultsHeader?.totalFound || "0 товаров"
     },
     tagList() {
       return getWidget(this.widgets, "tagList")?.items || []

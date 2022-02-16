@@ -29,12 +29,23 @@ export default {
   name: "Breadcrumb",
 
   props: {
-    catalog: Object,
+    category: Object,
   },
 
   computed: {
     url() {
       return this.$route.params.url
+    },
+    shared() {
+      if (this.category) {
+        if (this.category?.shared && this.category?.shared?.length > 0) {
+          return JSON.parse(this.category?.shared)
+        }
+      }
+      return null
+    },
+    catalog() {
+      return this.shared?.catalog
     },
     currentCategory() {
       return this.catalog?.category
@@ -53,13 +64,6 @@ export default {
 </script>
 
 <style>
-.ant-breadcrumb .ant-breadcrumb-link a {
-  color: #005bff !important;
-  display: inline-block !important;
-}
-</style>
-
-<style scoped>
 #breadcrumb {
   display: flex;
   align-items: center;
@@ -68,5 +72,9 @@ export default {
   margin: 8px 0 6px;
   justify-content: flex-start;
   min-height: 26px;
+}
+#breadcrumb .ant-breadcrumb .ant-breadcrumb-link a {
+  color: #005bff !important;
+  display: inline-block !important;
 }
 </style>
