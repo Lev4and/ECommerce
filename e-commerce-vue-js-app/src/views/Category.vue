@@ -73,12 +73,33 @@
                 </template>
               </a-collapse-panel>
             </template>
+            <template v-else-if="filter.ftype === 'RESPONSE_FILTER_TYPE_RATING'">
+              <a-collapse-panel :key="filter.key" :header="filter.name">
+                <a-switch :defaultChecked="filter.values[0].value" />
+              </a-collapse-panel>
+            </template>
+            <template v-else-if="filter.ftype === 'RESPONSE_FILTER_TYPE_COLOR'">
+              <a-collapse-panel :key="filter.key" :header="filter.name">
+                <template v-for="value in filter.values">
+                  <a-checkbox :key="value.key" :value="value.value">{{ value.color.name }}</a-checkbox>
+                </template>
+              </a-collapse-panel>
+            </template>
             <template v-else>
               {{ filter.ftype }}
             </template>
           </template>
         </a-collapse>
       </a-layout-sider>
+      <a-layout-content :style="{ background: '#fff', padding: '24px', margin: 0, minHeight: '280px' }">
+        <a-list item-layout="vertical" size="large">
+          <template v-for="product in products">
+            <a-list-item :key="product.action.link">
+              
+            </a-list-item>
+          </template>
+        </a-list>
+      </a-layout-content>
     </a-layout>
   </div>
 </template>
@@ -115,7 +136,7 @@
         return this.$route.params.url
       },
       shared() {
-        if(this.category) {
+        if (this.category) {
           if(this.category?.shared && this.category?.shared?.length > 0) {
             return JSON.parse(this.category?.shared)
           }
@@ -143,6 +164,9 @@
       catalogResultsHeader() {
         return getWidget(this.widgets, 'catalogResultsHeader')
       },
+      searchResults() {
+        return getWidget(this.widgets, 'searchResultsV2')
+      },
       searchResultsFilters() {
         return getWidget(this.widgets, 'searchResultsFilters')
       },
@@ -156,8 +180,12 @@
         return this.mapCategories(this.searchResultsFilters?.categories)
       },
       filters() {
-        console.log(this.searchResultsFilters?.filters)
+        console.log(this.searchResultsFilters?.filters || [])
         return this.searchResultsFilters?.filters || []
+      },
+      products() {
+        console.log(this.searchResults?.items || [])
+        return this.searchResults?.items || []
       },
     },
 
@@ -165,9 +193,9 @@
       async loadCategory() {
         this.category = await API.catalog.getCatalog(this.url, 1)
       },
-      mapCategories(categories){
-        if(categories){
-          if(Array.isArray(categories)){
+      mapCategories(categories) {
+        if (categories) {
+          if (Array.isArray(categories)) {
             return _map(categories, (category) => { 
               return {
                 url: category.info.overrideUrl || `/category/${category.info.urlValue}`,

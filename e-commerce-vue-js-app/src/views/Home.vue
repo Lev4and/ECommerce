@@ -34,9 +34,9 @@
       async loadCategories() {
         this.categories = this.mapCategories((await API.category.getCategory()).categories)
       },
-      mapCategories(categories){
-        if(categories){
-          if(Array.isArray(categories)){
+      mapCategories(categories) {
+        if (categories) {
+          if (Array.isArray(categories)) {
             return _map(categories, (category) => { 
               return {
                 url: category.url,
