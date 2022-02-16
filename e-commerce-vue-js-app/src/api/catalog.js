@@ -5,6 +5,11 @@ export const getCatalog = async (url, page = 1) => {
   return await responseAsync(client, `/api/catalog/`, config)
 }
 
+export const getAllFilters = async (url) => {
+  const config = { params: { category_url: url } }
+  return await responseAsync(client, `/api/catalog/allFilters`, config)
+}
+
 const responseAsync = async (client, url, config) => {
-  return (await client.get(url, config )).data
+  return (await client.get(url, config)).data
 }

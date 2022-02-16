@@ -13,48 +13,50 @@
 </template>
 
 <script>
-  import { map as _map } from 'lodash'
-  import API from '@/api'
+import { map as _map } from "lodash"
+import API from "@/api"
 
-  export default {
-    name: 'Home',
+export default {
+  name: "Home",
 
-    data: () => ({
-      isLoading: false,
-      categories: [],
-    }),
+  data: () => ({
+    isLoading: false,
+    categories: [],
+  }),
 
-    mounted() {
-      this.isLoading = false
-      this.loadCategories()
-      this.isLoading = true
+  mounted() {
+    this.isLoading = false
+    this.loadCategories()
+    this.isLoading = true
+  },
+
+  methods: {
+    async loadCategories() {
+      this.categories = this.mapCategories(
+        (await API.category.getCategory()).categories
+      )
     },
-
-    methods: {
-      async loadCategories() {
-        this.categories = this.mapCategories((await API.category.getCategory()).categories)
-      },
-      mapCategories(categories) {
-        if (categories) {
-          if (Array.isArray(categories)) {
-            return _map(categories, (category) => { 
-              return {
-                url: category.url,
-                title: category.title,
-                scopedSlots: { title: 'title' },
-                children: this.mapCategories(category.categories)
-              }
-            })
-          }
+    mapCategories(categories) {
+      if (categories) {
+        if (Array.isArray(categories)) {
+          return _map(categories, (category) => {
+            return {
+              url: category.url,
+              title: category.title,
+              scopedSlots: { title: "title" },
+              children: this.mapCategories(category.categories),
+            }
+          })
         }
-        return []
-      },
+      }
+      return []
     },
-  }
+  },
+}
 </script>
 
 <style scoped>
-  #home{
-    min-height: 100vh;
-  }
+#home {
+  min-height: 100vh;
+}
 </style>
