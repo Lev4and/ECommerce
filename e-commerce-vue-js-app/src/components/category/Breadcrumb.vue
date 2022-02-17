@@ -26,7 +26,7 @@
 
 <script>
 export default {
-  name: "Breadcrumb",
+  name: 'Breadcrumb',
 
   props: {
     category: Object,
@@ -51,7 +51,7 @@ export default {
       return this.catalog?.category
     },
     categoryName() {
-      return this.currentCategory?.name || ""
+      return this.currentCategory?.name || ''
     },
     breadCrumbs() {
       if (this.catalog) {

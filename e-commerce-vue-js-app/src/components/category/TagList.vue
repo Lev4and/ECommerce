@@ -1,16 +1,18 @@
 <template>
   <div id="tagList">
     <template v-for="tag in tagList">
-      <a-tag :key="tag.link">{{ tag.name }}</a-tag>
+      <a-tag :key="tag.link">
+        {{ tag.name }}
+      </a-tag>
     </template>
   </div>
 </template>
 
 <script>
-import { getWidget } from "@/services/utils/widgetsUtils"
+import { getWidget } from '@/services/utils/widgetsUtils'
 
 export default {
-  name: "tagList",
+  name: 'TagList',
 
   props: {
     category: Object,
@@ -21,7 +23,7 @@ export default {
       return this.category?.widgetStates
     },
     tagList() {
-      return getWidget(this.widgets, "tagList")?.items || []
+      return getWidget(this.widgets, 'tagList')?.items || []
     },
   },
 }

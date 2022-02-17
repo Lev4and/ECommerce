@@ -7,10 +7,10 @@
 </template>
 
 <script>
-import { getWidget } from "@/services/utils/widgetsUtils"
+import { getWidget } from '@/services/utils/widgetsUtils'
 
 export default {
-  name: "Header",
+  name: 'Header',
 
   props: {
     category: Object,
@@ -21,10 +21,10 @@ export default {
       return this.category?.widgetStates
     },
     catalogResultsHeader() {
-      return getWidget(this.widgets, "catalogResultsHeader")
+      return getWidget(this.widgets, 'catalogResultsHeader')
     },
     totalFound() {
-      return this.catalogResultsHeader?.totalFound || "0 товаров"
+      return this.catalogResultsHeader?.totalFound || '0 товаров'
     },
     shared() {
       if (this.category) {
@@ -41,7 +41,7 @@ export default {
       return this.catalog?.category
     },
     categoryName() {
-      return this.currentCategory?.name || ""
+      return this.currentCategory?.name || ''
     },
   },
 }

@@ -4,11 +4,17 @@
     <Header :category="category" />
     <TagList :category="category" />
     <a-layout>
-      <a-layout-sider width="300" style="background: #fff">
+      <a-layout-sider
+        width="300"
+        style="background: #fff"
+      >
         <a-collapse>
           <a-collapse-panel header="Категории">
-            <a-tree :treeData="categories">
-              <template slot="title" slot-scope="{ url, title }">
+            <a-tree :tree-data="categories">
+              <template
+                slot="title"
+                slot-scope="{ url, title }"
+              >
                 <router-link :to="{ name: 'Category', params: { url: url } }">
                   <strong>{{ title }}</strong>
                 </router-link>
@@ -17,23 +23,40 @@
           </a-collapse-panel>
           <template v-for="filter in filters">
             <template v-if="filter.ftype === 'RESPONSE_FILTER_TYPE_BOOL'">
-              <a-collapse-panel :key="filter.key" :header="filter.name">
-                <a-switch :defaultChecked="filter.values[0].value" />
+              <a-collapse-panel
+                :key="filter.key"
+                :header="filter.name"
+              >
+                <a-switch :default-checked="filter.values[0].value" />
               </a-collapse-panel>
             </template>
             <template v-else-if="filter.ftype === 'RESPONSE_FILTER_TYPE_RADIO'">
-              <a-collapse-panel :key="filter.key" :header="filter.name">
-                <a-radio-group :name="filter.key" :default-value="1">
+              <a-collapse-panel
+                :key="filter.key"
+                :header="filter.name"
+              >
+                <a-radio-group
+                  :name="filter.key"
+                  :default-value="1"
+                >
                   <template v-for="value in filter.values">
-                    <a-radio :key="value.key" :value="value.key">{{
-                      value.value
-                    }}</a-radio>
+                    <a-radio
+                      :key="value.key"
+                      :value="value.key"
+                    >
+                      {{
+                        value.value
+                      }}
+                    </a-radio>
                   </template>
                 </a-radio-group>
               </a-collapse-panel>
             </template>
             <template v-else-if="filter.ftype === 'RESPONSE_FILTER_TYPE_RANGE'">
-              <a-collapse-panel :key="filter.key" :header="filter.name">
+              <a-collapse-panel
+                :key="filter.key"
+                :header="filter.name"
+              >
                 <a-slider
                   range
                   :default-value="[
@@ -53,7 +76,7 @@
                       :step="filter.values[0].range.step"
                     />
                   </a-col>
-                  <a-col :span="8"> </a-col>
+                  <a-col :span="8" />
                   <a-col :span="8">
                     <a-input-number
                       :value="filter.values[0].range.to"
@@ -66,27 +89,46 @@
               </a-collapse-panel>
             </template>
             <template v-else-if="filter.ftype === 'RESPONSE_FILTER_TYPE_MULTI'">
-              <a-collapse-panel :key="filter.key" :header="filter.name">
+              <a-collapse-panel
+                :key="filter.key"
+                :header="filter.name"
+              >
                 <template v-for="value in filter.values">
-                  <a-checkbox :key="value.key" :value="value.value">{{
-                    value.value
-                  }}</a-checkbox>
+                  <a-checkbox
+                    :key="value.key"
+                    :value="value.value"
+                  >
+                    {{
+                      value.value
+                    }}
+                  </a-checkbox>
                 </template>
               </a-collapse-panel>
             </template>
             <template
               v-else-if="filter.ftype === 'RESPONSE_FILTER_TYPE_RATING'"
             >
-              <a-collapse-panel :key="filter.key" :header="filter.name">
-                <a-switch :defaultChecked="filter.values[0].value" />
+              <a-collapse-panel
+                :key="filter.key"
+                :header="filter.name"
+              >
+                <a-switch :default-checked="filter.values[0].value" />
               </a-collapse-panel>
             </template>
             <template v-else-if="filter.ftype === 'RESPONSE_FILTER_TYPE_COLOR'">
-              <a-collapse-panel :key="filter.key" :header="filter.name">
+              <a-collapse-panel
+                :key="filter.key"
+                :header="filter.name"
+              >
                 <template v-for="value in filter.values">
-                  <a-checkbox :key="value.key" :value="value.value">{{
-                    value.color.name
-                  }}</a-checkbox>
+                  <a-checkbox
+                    :key="value.key"
+                    :value="value.value"
+                  >
+                    {{
+                      value.color.name
+                    }}
+                  </a-checkbox>
                 </template>
               </a-collapse-panel>
             </template>
@@ -104,9 +146,12 @@
           minHeight: '280px',
         }"
       >
-        <a-list item-layout="vertical" size="large">
+        <a-list
+          item-layout="vertical"
+          size="large"
+        >
           <template v-for="product in products">
-            <a-list-item :key="product.action.link"> </a-list-item>
+            <a-list-item :key="product.action.link" />
           </template>
         </a-list>
       </a-layout-content>
@@ -115,15 +160,15 @@
 </template>
 
 <script>
-import { map as _map } from "lodash"
-import API from "@/api"
-import { getWidget } from "@/services/utils/widgetsUtils"
-import Breadcrumb from "@/components/category/Breadcrumb"
-import Header from "@/components/category/Header"
-import TagList from "@/components/category/TagList"
+import { map as _map } from 'lodash'
+import API from '@/api'
+import { getWidget } from '@/services/utils/widgetsUtils'
+import Breadcrumb from '@/components/category/Breadcrumb'
+import Header from '@/components/category/Header'
+import TagList from '@/components/category/TagList'
 
 export default {
-  name: "Category",
+  name: 'Category',
 
   components: {
     Breadcrumb,
@@ -138,19 +183,6 @@ export default {
     allFilters: [],
     activeKey: 1,
   }),
-
-  watch: {
-    url: {
-      handler() {
-        this.isLoading = false
-        this.loadCategory()
-        this.loadAllFilters()
-        this.isLoading = true
-      },
-      deep: true,
-      immediate: true,
-    },
-  },
 
   computed: {
     url() {
@@ -174,13 +206,13 @@ export default {
       return this.catalog?.category
     },
     categoryName() {
-      return this.currentCategory?.name || ""
+      return this.currentCategory?.name || ''
     },
     searchResults() {
-      return getWidget(this.widgets, "searchResultsV2")
+      return getWidget(this.widgets, 'searchResultsV2')
     },
     searchResultsFilters() {
-      return getWidget(this.widgets, "searchResultsFilters")
+      return getWidget(this.widgets, 'searchResultsFilters')
     },
     categories() {
       return this.mapCategories(this.searchResultsFilters?.categories)
@@ -190,6 +222,19 @@ export default {
     },
     products() {
       return this.searchResults?.items || []
+    },
+  },
+
+  watch: {
+    url: {
+      handler() {
+        this.isLoading = false
+        this.loadCategory()
+        this.loadAllFilters()
+        this.isLoading = true
+      },
+      deep: true,
+      immediate: true,
     },
   },
 
@@ -209,7 +254,7 @@ export default {
                 category.info.overrideUrl ||
                 `/category/${category.info.urlValue}`,
               title: category.info.name,
-              scopedSlots: { title: "title" },
+              scopedSlots: { title: 'title' },
               children: this.mapCategories(category.categories),
             }
           })

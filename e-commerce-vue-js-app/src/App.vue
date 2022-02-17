@@ -2,7 +2,11 @@
   <div id="app">
     <a-layout id="components-layout-demo-fixed">
       <a-layout-header :style="{ position: 'fixed', zIndex: 1, width: '100%' }">
-        <a-menu theme="dark" mode="horizontal" :style="{ lineHeight: '64px' }">
+        <a-menu
+          theme="dark"
+          mode="horizontal"
+          :style="{ lineHeight: '64px' }"
+        >
           <a-menu-item key="1">
             <router-link :to="{ name: 'Home' }">
               <span>Каталог</span>

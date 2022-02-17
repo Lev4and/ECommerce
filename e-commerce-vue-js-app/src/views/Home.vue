@@ -1,8 +1,11 @@
 <template>
   <div id="home">
     <a-spin :spinning="!isLoading">
-      <a-tree :treeData="categories">
-        <template slot="title" slot-scope="{ url, title }">
+      <a-tree :tree-data="categories">
+        <template
+          slot="title"
+          slot-scope="{ url, title }"
+        >
           <router-link :to="{ name: 'Category', params: { url: url } }">
             <strong>{{ title }}</strong>
           </router-link>
@@ -13,11 +16,11 @@
 </template>
 
 <script>
-import { map as _map } from "lodash"
-import API from "@/api"
+import { map as _map } from 'lodash'
+import API from '@/api'
 
 export default {
-  name: "Home",
+  name: 'Home',
 
   data: () => ({
     isLoading: false,
@@ -33,7 +36,7 @@ export default {
   methods: {
     async loadCategories() {
       this.categories = this.mapCategories(
-        (await API.category.getCategory()).categories
+        (await API.category.getCategory()).categories,
       )
     },
     mapCategories(categories) {
@@ -43,7 +46,7 @@ export default {
             return {
               url: category.url,
               title: category.title,
-              scopedSlots: { title: "title" },
+              scopedSlots: { title: 'title' },
               children: this.mapCategories(category.categories),
             }
           })
