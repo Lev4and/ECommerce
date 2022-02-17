@@ -18,7 +18,7 @@
         <router-view />
       </a-layout-content>
       <a-layout-footer :style="{ textAlign: 'center' }">
-        E-Commerce ©2022 Created by Lev4and
+        <a href="https://github.com/Lev4and/ECommerce">E-Commerce</a> ©2022 Created by <a href="https://github.com/Lev4and">Lev4and</a>
       </a-layout-footer>
     </a-layout>
   </div>
