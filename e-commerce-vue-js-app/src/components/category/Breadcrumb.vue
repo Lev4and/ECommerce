@@ -63,7 +63,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 #breadcrumb {
   display: flex;
   align-items: center;

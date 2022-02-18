@@ -1,7 +1,10 @@
 <template>
   <div id="tagList">
     <template v-for="tag in tagList">
-      <a-tag :key="tag.link">
+      <a-tag
+        :key="tag.link"
+        :class="'tag'"
+      >
         {{ tag.name }}
       </a-tag>
     </template>
@@ -15,7 +18,10 @@ export default {
   name: 'TagList',
 
   props: {
-    category: Object,
+    category: {
+      type: Object,
+      required: false,
+    },
   },
 
   computed: {
@@ -29,7 +35,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 #tagList {
   align-items: center;
   box-sizing: border-box;
@@ -39,7 +45,7 @@ export default {
   margin-bottom: 18px;
   min-height: 38px;
 }
-#tagList .ant-tag {
+#tagList .tag {
   align-items: center;
   background: #eff3f6;
   border-radius: 16px;

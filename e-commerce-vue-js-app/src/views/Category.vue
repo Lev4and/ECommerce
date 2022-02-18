@@ -1,8 +1,16 @@
 <template>
   <div id="category">
-    <Breadcrumb :category="category" />
-    <Header :category="category" />
-    <TagList :category="category" />
+    <a-row>
+      <a-col :span="24">
+        <Breadcrumb :category="category" />
+      </a-col>
+      <a-col :span="24">
+        <Header :category="category" />
+      </a-col>
+      <a-col :span="24">
+        <TagList :category="category" />
+      </a-col>
+    </a-row>
     <a-layout>
       <Sider :category="category" />
       <a-layout-content />
