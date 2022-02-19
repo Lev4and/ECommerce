@@ -1,7 +1,13 @@
 <template>
   <SiderBlock :title="'Категории'">
-    <a-tree :class="'tree-items-group'" :tree-data="categories">
-      <template slot="title" slot-scope="{ url, title }">
+    <a-tree
+      :class="'tree-items-group'"
+      :tree-data="categories"
+    >
+      <template
+        slot="title"
+        slot-scope="{ url, title }"
+      >
         <router-link :to="{ name: 'Category', params: { url: url } }">
           <strong>{{ title }}</strong>
         </router-link>
@@ -16,12 +22,15 @@ import SiderBlock from '@/components/category/sider/SiderBlock'
 export default {
   name: 'BlockCategory',
 
-  props: {
-    categories: Array,
-  },
-
   components: {
     SiderBlock,
+  },
+
+  props: {
+    categories: {
+      type: Array,
+      required: false,
+    },
   },
 }
 </script>
