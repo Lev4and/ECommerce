@@ -13,7 +13,7 @@
           :min="filter.values[0].range.min"
           :max="filter.values[0].range.max"
           :step="0.1"
-          :value="filter.values[0].range.from"
+          :default-value="filter.values[0].range.from"
         />
       </a-col>
       <a-col :span="8" />
@@ -22,7 +22,7 @@
           :min="filter.values[0].range.min"
           :max="filter.values[0].range.max"
           :step="0.1"
-          :value="filter.values[0].range.to"
+          :default-value="filter.values[0].range.to"
         />
       </a-col>
     </a-row>
