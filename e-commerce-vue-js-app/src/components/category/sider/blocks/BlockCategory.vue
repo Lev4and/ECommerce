@@ -36,14 +36,14 @@ export default {
 </script>
 
 <style>
-ul.tree-items-group.ant-tree li[role="treeitem"] span.ant-tree-node-content-wrapper{
+ul.tree-items-group.ant-tree li[role="treeitem"] span.ant-tree-node-content-wrapper {
   display: contents;
   white-space: pre-wrap;
 }
 </style>
 
 <style scoped>
-ul.tree-items-group{
+ul.tree-items-group {
   display: flex;
   overflow: auto;
   flex-flow: column;

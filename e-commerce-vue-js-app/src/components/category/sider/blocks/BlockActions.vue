@@ -27,12 +27,12 @@ export default {
 </script>
 
 <style scoped>
-div.button-group{
+div.button-group {
   align-items: flex-start;
   display: flex;
   flex-flow: column;
 }
-div.button-group button.ant-btn{
+div.button-group button.ant-btn {
   width: 100%;
   flex: 0 0 auto;
   font-size: 16px;

@@ -146,13 +146,13 @@ export default {
 </script>
 
 <style scoped>
-div.layout-sider-content{
+div.layout-sider-content {
   padding: 10px;
 }
-div.layout-sider-content section{
+div.layout-sider-content section {
   margin: 12px 0;
 }
-div.layout-sider-content section:first-child{
+div.layout-sider-content section:first-child {
   margin: 0 0 12px 0;
 }
 </style>

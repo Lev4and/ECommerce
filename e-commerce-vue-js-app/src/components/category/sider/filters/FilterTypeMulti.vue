@@ -30,21 +30,21 @@ export default {
 </script>
 
 <style scoped>
-div.checkbox-group{
+div.checkbox-group {
   display: flex;
   overflow: auto;
   flex-flow: column;
   max-height: 200px;
   align-items: flex-start;
 }
-div.checkbox-group label.ant-checkbox-wrapper{
+div.checkbox-group label.ant-checkbox-wrapper {
   flex: 0 0 auto;
   font-size: 16px;
   line-height: 1.25;
   margin-left: 0px;
   margin-bottom: 6px;
 }
-div.checkbox-group label.ant-checkbox-wrapper span:not(.ant-checkbox){
+div.checkbox-group label.ant-checkbox-wrapper span:not(.ant-checkbox) {
   color: #001a34;
   flex-basis: auto;
   flex-grow: 1;

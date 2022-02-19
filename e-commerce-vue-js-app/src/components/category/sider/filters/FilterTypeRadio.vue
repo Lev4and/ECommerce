@@ -33,19 +33,19 @@ export default {
 </script>
 
 <style scoped>
-div.radio-group{
+div.radio-group {
   display: flex;
   overflow: auto;
   max-height: 200px;
   flex-direction: column;
 }
-div.radio-group label.ant-radio-wrapper{
+div.radio-group label.ant-radio-wrapper {
   flex: 0 0 auto;
   font-size: 16px;
   line-height: 1.25;
   margin-bottom: 6px;
 }
-div.radio-group label.ant-radio-wrapper span:not(.ant-radio){
+div.radio-group label.ant-radio-wrapper span:not(.ant-radio) {
   color: #001a34;
   flex-basis: auto;
   flex-grow: 1;
