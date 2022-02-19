@@ -1,5 +1,5 @@
 <template>
-  <div id="tagList">
+  <div v-if="tagList.length > 0" id="tagList">
     <template v-for="tag in tagList">
       <a-tag
         :key="tag.link"
