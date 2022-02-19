@@ -1,6 +1,6 @@
 <template>
   <SiderBlock :title="'Категории'">
-    <a-tree :tree-data="categories">
+    <a-tree :class="'tree-items-group'" :tree-data="categories">
       <template slot="title" slot-scope="{ url, title }">
         <router-link :to="{ name: 'Category', params: { url: url } }">
           <strong>{{ title }}</strong>
@@ -26,6 +26,19 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
+ul.tree-items-group.ant-tree li[role="treeitem"] span.ant-tree-node-content-wrapper{
+  display: contents;
+  white-space: pre-wrap;
+}
+</style>
 
+<style scoped>
+ul.tree-items-group{
+  display: flex;
+  overflow: auto;
+  flex-flow: column;
+  max-height: 200px;
+  align-items: flex-start;
+}
 </style>
