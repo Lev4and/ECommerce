@@ -5,7 +5,7 @@
         <a-checkbox
           :key="value.key"
           :value="value.value"
-          :checked="false"
+          :default-checked="false"
         >
           {{ value.color.name }}
         </a-checkbox>
