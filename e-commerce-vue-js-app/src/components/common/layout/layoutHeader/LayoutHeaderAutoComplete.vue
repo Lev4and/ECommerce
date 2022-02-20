@@ -3,22 +3,48 @@
     class="global-search"
     size="large"
     style="width: 100%"
+    ref="autoComplete"
     placeholder="Искать на E-Commerce"
     option-label-prop="title"
     @select="onSelect"
     @search="handleSearch"
   >
     <template slot="dataSource">
-      <a-select-option v-for="item in dataSource" :key="item.category" :title="item.category">
-        Found {{ item.query }} on
-        <a
-          :href="`https://s.taobao.com/search?q=${item.query}`"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {{ item.category }}
-        </a>
-        <span className="global-search-item-count">{{ item.count }} results</span>
+      <a-select-option
+        v-for="item in searchSuggestions"
+        :key="item.link"
+        :title="item.title"
+      >
+        <template v-if="item.meta.type === 'suggests'">
+          <SearchSuggestionSuggests
+            :key="item.link"
+            :searchSuggestion="item"
+          />
+        </template>
+        <template v-else-if="item.meta.type === 'category'">
+          <SearchSuggestionCategory
+            :key="item.link"
+            :searchSuggestion="item"
+          />
+        </template>
+        <template v-else-if="item.meta.type === 'brand'">
+          <SearchSuggestionBrand
+            :key="item.link"
+            :searchSuggestion="item"
+          />
+        </template>
+        <template v-else-if="item.meta.type === 'item'">
+          <SearchSuggestionItem
+            :key="item.link"
+            :searchSuggestion="item"
+          />
+        </template>
+        <template v-else>
+          <SearchSuggestionUndefined
+            :key="item.link"
+            :searchSuggestion="item"
+          />
+        </template>
       </a-select-option>
     </template>
     <a-input>
@@ -36,32 +62,48 @@
 </template>
 
 <script>
+import API from '@/api'
+import { getWidget } from '@/services/utils/widgetsUtils'
+import SearchSuggestionSuggests from '@/components/common/layout/layoutHeader/searchSuggestions/SearchSuggestionSuggests'
+import SearchSuggestionCategory from '@/components/common/layout/layoutHeader/searchSuggestions/SearchSuggestionCategory'
+import SearchSuggestionBrand from '@/components/common/layout/layoutHeader/searchSuggestions/SearchSuggestionBrand'
+import SearchSuggestionItem from '@/components/common/layout/layoutHeader/searchSuggestions/SearchSuggestionItem'
+import SearchSuggestionUndefined from '@/components/common/layout/layoutHeader/searchSuggestions/SearchSuggestionUndefined'
+
 export default {
   name: 'LayoutHeaderAutoComplete',
 
   data: () => ({
     dataSource: [],
+    searchResult: null,
   }),
+
+  components: {
+    SearchSuggestionSuggests,
+    SearchSuggestionCategory,
+    SearchSuggestionBrand,
+    SearchSuggestionItem,
+    SearchSuggestionUndefined,
+  },
+
+  computed: {
+    url() {
+      return this.$route.params.url
+    },
+    widgets() {
+      return this.searchResult?.widgetStates
+    },
+    searchSuggestions() {
+      return getWidget(this.widgets, 'searchSuggestions')?.items || []
+    },
+  },
 
   methods: {
     onSelect(value) {
       console.log('onSelect', value)
     },
-    handleSearch(value) {
-      this.dataSource = value ? this.searchResult(value) : []
-    },
-    getRandomInt(max, min = 0) {
-      return Math.floor(Math.random() * (max - min + 1)) + min
-    },
-    searchResult(query) {
-      return new Array(this.getRandomInt(5))
-        .join('.')
-        .split('.')
-        .map((item, idx) => ({
-          query,
-          category: `${query}${idx}`,
-          count: this.getRandomInt(200, 100),
-        }))
+    async handleSearch(value) {
+      this.searchResult = await API.catalog.getSearchSuggestions(this.url, value)
     },
   },
 }

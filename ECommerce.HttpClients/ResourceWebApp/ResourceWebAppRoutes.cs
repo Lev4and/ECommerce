@@ -2,7 +2,7 @@
 {
     public class ResourceWebAppRoutes
     {
-        public const string Domain = "ozon.resource.api.u1321851.plsk.regruhosting.ru.u1321851.plsk.regruhosting.ru";
+        public const string Domain = "ozon.resource.api.u1321851.plsk.regruhosting.ru";
 
         public const string CatalogPath = "catalog/";
 

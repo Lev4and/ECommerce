@@ -13,7 +13,7 @@
     </a-row>
     <a-layout>
       <Sider :category="category" />
-      <a-layout-content />
+      <Content :category="category" />
     </a-layout>
   </div>
 </template>
@@ -24,6 +24,7 @@ import Breadcrumb from '@/components/category/Breadcrumb'
 import Header from '@/components/category/Header'
 import TagList from '@/components/category/TagList'
 import Sider from '@/components/category/Sider'
+import Content from '@/components/category/Content'
 
 export default {
   name: 'Category',
@@ -33,6 +34,7 @@ export default {
     Header,
     TagList,
     Sider,
+    Content,
   },
 
   data: () => ({

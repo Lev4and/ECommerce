@@ -3,13 +3,13 @@
     :style="{ position: 'fixed', zIndex: 1, width: '100%' }"
   >
     <a-row type="flex" justify="space-between" align="middle">
-      <a-col flex="100px">
+      <a-col flex="40px">
         <LayoutHeaderLogo />
       </a-col>
-      <a-col :span="4">
+      <a-col flex="100px">
         <LayoutHeaderButton />
       </a-col>
-      <a-col :span="8">
+      <a-col :span="12">
         <LayoutHeaderAutoComplete />
       </a-col>
       <a-col :span="6">

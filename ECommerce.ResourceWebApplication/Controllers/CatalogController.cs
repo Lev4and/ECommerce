@@ -1,4 +1,5 @@
 ﻿using ECommerce.HttpClients.Ozon.ResponseModels;
+using ECommerce.ResourceWebApplication.Models;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
@@ -26,17 +27,17 @@ namespace ECommerce.ResourceWebApplication.Controllers
             {
                 return Ok(await _httpContext.Ozon.Listing.GetListingAsync(categoryUrl, page));
             }
-
+                
             return BadRequest();
         }
 
-        [HttpGet("searchSuggestions")]
+        [HttpPost("searchSuggestions")]
         [ProducesResponseType(typeof(SearchSuggestions), 200)]
-        public async Task<IActionResult> SearchSuggestions([Required][FromQuery(Name = "category_url")] string categoryUrl, [Required][FromQuery(Name = "q")] string searchString)
+        public async Task<IActionResult> SearchSuggestions([FromBody] SearchSuggestionsRequestModel requestModel)
         {
-            if (!string.IsNullOrEmpty(categoryUrl) && !string.IsNullOrEmpty(searchString))
+            if(requestModel != null)
             {
-                return Ok(await _httpContext.Ozon.Listing.GetSearchSuggestionsAsync(categoryUrl, searchString));
+                return Ok(await _httpContext.Ozon.Listing.GetSearchSuggestionsAsync(requestModel.CategoryUrl, requestModel.SearchString));
             }
 
             return BadRequest();
