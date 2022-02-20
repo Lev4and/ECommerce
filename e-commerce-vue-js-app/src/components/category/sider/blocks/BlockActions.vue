@@ -1,6 +1,9 @@
 <template>
   <SiderBlock>
-    <div class="button-group">
+    <div
+    class="button-group"
+    @click="showAllFilters"
+    >
       <a-button>
         Все фильтры
       </a-button>
@@ -15,6 +18,7 @@
 </template>
 
 <script>
+import EventBus from '@/services/eventBus.js'
 import SiderBlock from '@/components/category/sider/SiderBlock'
 
 export default {
@@ -22,6 +26,12 @@ export default {
 
   components: {
     SiderBlock,
+  },
+
+  methods: {
+    showAllFilters() {
+      EventBus.$emit('showAllFilters')
+    },
   },
 }
 </script>

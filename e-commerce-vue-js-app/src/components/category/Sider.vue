@@ -7,50 +7,13 @@
       <div class="layout-sider-content">
         <BlockCategory :categories="categories" />
         <template v-for="filter in filters">
-          <template v-if="filter.ftype === 'RESPONSE_FILTER_TYPE_BOOL'">
-            <FilterTypeBool
-              :key="filter.key"
-              :filter="filter"
-            />
-          </template>
-          <template v-else-if="filter.ftype === 'RESPONSE_FILTER_TYPE_RADIO'">
-            <FilterTypeRadio
-              :key="filter.key"
-              :filter="filter"
-            />
-          </template>
-          <template v-else-if="filter.ftype === 'RESPONSE_FILTER_TYPE_RANGE'">
-            <FilterTypeRange
-              :key="filter.key"
-              :filter="filter"
-            />
-          </template>
-          <template v-else-if="filter.ftype === 'RESPONSE_FILTER_TYPE_MULTI'">
-            <FilterTypeMulti
-              :key="filter.key"
-              :filter="filter"
-            />
-          </template>
-          <template v-else-if="filter.ftype === 'RESPONSE_FILTER_TYPE_RATING'">
-            <FilterTypeRating
-              :key="filter.key"
-              :filter="filter"
-            />
-          </template>
-          <template v-else-if="filter.ftype === 'RESPONSE_FILTER_TYPE_COLOR'">
-            <FilterTypeColor
-              :key="filter.key"
-              :filter="filter"
-            />
-          </template>
-          <template v-else>
-            <FilterTypeUndefined
-              :key="filter.key"
-              :filter="filter"
-            />
-          </template>
+          <FilterType
+            :key="filter.key"
+            :filter="filter"
+          />
         </template>
         <BlockActions />
+        <ModalAllFilters />
       </div>
     </a-layout-sider>
   </div>
@@ -58,31 +21,20 @@
 
 <script>
 import { map as _map } from 'lodash'
-import API from '@/api'
 import { getWidget } from '@/services/utils/widgetsUtils'
+import ModalAllFilters from '@/components/category/sider/ModalAllFilters'
 import BlockCategory from '@/components/category/sider/blocks/BlockCategory'
 import BlockActions from '@/components/category/sider/blocks/BlockActions'
-import FilterTypeBool from '@/components/category/sider/filters/FilterTypeBool'
-import FilterTypeRadio from '@/components/category/sider/filters/FilterTypeRadio'
-import FilterTypeRange from '@/components/category/sider/filters/FilterTypeRange'
-import FilterTypeMulti from '@/components/category/sider/filters/FilterTypeMulti'
-import FilterTypeRating from '@/components/category/sider/filters/FilterTypeRating'
-import FilterTypeColor from '@/components/category/sider/filters/FilterTypeColor'
-import FilterTypeUndefined from '@/components/category/sider/filters/FilterTypeUndefined'
+import FilterType from '@/components/category/sider/FilterType'
 
 export default {
   name: 'Sider',
 
   components: {
+    ModalAllFilters,
     BlockCategory,
     BlockActions,
-    FilterTypeBool,
-    FilterTypeRadio,
-    FilterTypeRange,
-    FilterTypeMulti,
-    FilterTypeRating,
-    FilterTypeColor,
-    FilterTypeUndefined,
+    FilterType,
   },
 
   props: {
@@ -110,22 +62,7 @@ export default {
     },
   },
 
-  watch: {
-    category: {
-      handler() {
-        this.isLoading = false
-        this.loadAllFilters()
-        this.isLoading = true
-      },
-      deep: true,
-      immediate: true,
-    },
-  },
-
   methods: {
-    async loadAllFilters() {
-      this.allFilters = await API.catalog.getAllFilters(this.url, 1)
-    },
     mapCategories(categories) {
       if (categories) {
         if (Array.isArray(categories)) {
