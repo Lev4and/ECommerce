@@ -76,5 +76,7 @@ export default {
 </script>
 
 <style scoped>
-
+div.modal-all-filters div.filter {
+  margin: 12px 0;
+}
 </style>

@@ -1,7 +1,9 @@
 <template>
   <router-link :to="{ name: 'Home' }">
     <a-button type="primary">
-      <a-icon type="unordered-list" /> Каталог
+      <strong>
+        <a-icon type="unordered-list" /> Каталог
+      </strong>
     </a-button>
   </router-link>
 </template>

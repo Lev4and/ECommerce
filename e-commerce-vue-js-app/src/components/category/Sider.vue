@@ -86,6 +86,9 @@ export default {
 div.layout-sider-content {
   padding: 10px;
 }
+div.layout-sider-content div.filter {
+  margin: 12px 0;
+}
 div.layout-sider-content section {
   margin: 12px 0;
 }
