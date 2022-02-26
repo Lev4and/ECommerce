@@ -1,25 +1,28 @@
 <template>
   <div id="category">
-    <a-row>
-      <a-col :span="24">
-        <Breadcrumb :category="category" />
-      </a-col>
-      <a-col :span="24">
-        <Header :category="category" />
-      </a-col>
-      <a-col :span="24">
-        <TagList :category="category" />
-      </a-col>
-    </a-row>
-    <a-layout>
-      <Sider :category="category" />
-      <Content :category="category" />
-    </a-layout>
+    <a-spin :spinning="!isLoading">
+      <a-row>
+        <a-col :span="24">
+          <Breadcrumb :category="category" />
+        </a-col>
+        <a-col :span="24">
+          <Header :category="category" />
+        </a-col>
+        <a-col :span="24">
+          <TagList :category="category" />
+        </a-col>
+      </a-row>
+      <a-layout>
+        <Sider :category="category" />
+        <Content :category="category" />
+      </a-layout>
+    </a-spin>
   </div>
 </template>
 
 <script>
 import API from '@/api'
+import EventBus from '@/services/eventBus.js'
 import Breadcrumb from '@/components/category/Breadcrumb'
 import Header from '@/components/category/Header'
 import TagList from '@/components/category/TagList'
@@ -54,18 +57,31 @@ export default {
   watch: {
     url: {
       handler() {
-        this.isLoading = false
         this.loadCategory()
-        this.isLoading = true
       },
       deep: true,
       immediate: true,
     },
   },
 
+  mounted() {
+    EventBus.$on('current-page-changed', this.onCurrentPageChanged)
+  },
+
+  beforeDestroy() {
+    EventBus.$off('current-page-changed', this.onCurrentPageChanged)
+  },
+
   methods: {
     async loadCategory() {
+      this.isLoading = false
       this.category = await API.catalog.getCatalog(this.url, 1)
+      this.isLoading = true
+    },
+    async onCurrentPageChanged(page) {
+      this.isLoading = false
+      this.category = await API.catalog.getCatalog(this.url, page)
+      this.isLoading = true
     },
   },
 }

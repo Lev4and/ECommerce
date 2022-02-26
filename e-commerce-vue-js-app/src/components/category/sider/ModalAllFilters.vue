@@ -57,11 +57,11 @@ export default {
   },
 
   mounted() {
-    EventBus.$on('showAllFilters', this.showAllFilters)
+    EventBus.$on('show-all-filters', this.showAllFilters)
   },
 
   beforeDestroy() {
-    EventBus.$off('showAllFilters', this.showAllFilters)
+    EventBus.$off('show-all-filters', this.showAllFilters)
   },
 
   methods: {

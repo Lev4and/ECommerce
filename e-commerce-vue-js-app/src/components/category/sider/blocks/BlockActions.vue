@@ -30,7 +30,7 @@ export default {
 
   methods: {
     showAllFilters() {
-      EventBus.$emit('showAllFilters')
+      EventBus.$emit('show-all-filters')
     },
   },
 }

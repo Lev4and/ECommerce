@@ -5,6 +5,7 @@
       <LayoutContent />
       <LayoutFooter />
     </a-layout>
+    <BackToTop />
   </div>
 </template>
 
@@ -12,6 +13,7 @@
 import LayoutHeader from '@/components/common/layout/LayoutHeader'
 import LayoutContent from '@/components/common/layout/LayoutContent'
 import LayoutFooter from '@/components/common/layout/LayoutFooter'
+import BackToTop from '@/components/common/BackToTop'
 
 export default {
   name: 'App',
@@ -20,6 +22,7 @@ export default {
     LayoutHeader,
     LayoutContent,
     LayoutFooter,
+    BackToTop,
   },
 }
 </script>

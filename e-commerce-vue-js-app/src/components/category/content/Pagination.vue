@@ -3,10 +3,13 @@
     class="pagination"
     :total="totalPages"
     :default-current="currentPage"
+    @change="onCurrentPageChanged"
   />
 </template>
 
 <script>
+import EventBus from '@/services/eventBus.js'
+
 export default {
   name: 'Pagination',
 
@@ -38,6 +41,12 @@ export default {
     },
     currentPage() {
       return this.catalog?.currentPage || 1
+    },
+  },
+
+  methods: {
+    onCurrentPageChanged(page) {
+      EventBus.$emit('current-page-changed', page)
     },
   },
 }
