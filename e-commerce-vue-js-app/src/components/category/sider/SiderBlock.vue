@@ -1,7 +1,19 @@
 <template>
   <section>
-    <header v-if="title !== ''">
+    <header v-if="title">
       {{ title }}
+      <a-tooltip
+        v-if="tooltip"
+        slot="suffix"
+      >
+        <template slot="title">
+          <span>{{ tooltip }}</span>
+        </template>
+        <a-icon
+          type="info-circle"
+          style="color: rgba(0,0,0,.45)"
+        />
+      </a-tooltip>
     </header>
     <main>
       <slot />
@@ -15,6 +27,11 @@ export default {
 
   props: {
     title: {
+      default: '',
+      type: String,
+      required: false,
+    },
+    tooltip: {
       default: '',
       type: String,
       required: false,

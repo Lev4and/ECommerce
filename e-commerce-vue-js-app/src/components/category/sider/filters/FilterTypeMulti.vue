@@ -1,5 +1,8 @@
 <template>
-  <SiderBlock :title="filter.name">
+  <SiderBlock
+    :title="filter.name"
+    :tooltip="filter.shortDesc"
+  >
     <div class="checkbox-group">
       <template v-for="value in filter.values">
         <a-checkbox

@@ -1,5 +1,8 @@
 <template>
-  <SiderBlock :title="filter.name">
+  <SiderBlock
+    :title="filter.name"
+    :tooltip="filter.shortDesc"
+  >
     <a-switch :default-checked="filter.values[0].value" />
   </SiderBlock>
 </template>

@@ -1,5 +1,8 @@
 <template>
-  <SiderBlock :title="filter.name">
+  <SiderBlock
+    :title="filter.name"
+    :tooltip="filter.shortDesc"
+  >
     <a-slider
       range
       :min="filter.values[0].range.min"
