@@ -13,6 +13,7 @@ export default {
   props: {
     category: {
       type: Object,
+      default: null,
       required: false,
     },
   },

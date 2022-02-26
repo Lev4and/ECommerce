@@ -1,6 +1,6 @@
 <template>
   <router-link :to="{ name: 'Home' }">
-    <img :src="require('@/assets/logo.png')" />
+    <img :src="require('@/assets/logo.png')">
   </router-link>
 </template>
 

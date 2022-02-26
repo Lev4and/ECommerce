@@ -29,7 +29,11 @@ export default {
   name: 'Breadcrumb',
 
   props: {
-    category: Object,
+    category: {
+      type: Object,
+      default: null,
+      required: false,
+    },
   },
 
   computed: {

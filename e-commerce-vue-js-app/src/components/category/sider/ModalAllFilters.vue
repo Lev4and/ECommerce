@@ -1,8 +1,8 @@
 <template>
   <a-modal
-  v-model="visible"
-  title="Все фильтры"
-  :class="'modal-all-filters'"
+    v-model="visible"
+    title="Все фильтры"
+    :class="'modal-all-filters'"
   >
     <template v-for="filter in filters">
       <FilterType
@@ -46,10 +46,6 @@ export default {
     },
   },
 
-  mounted() {
-    EventBus.$on('showAllFilters', this.showAllFilters)
-  },
-
   watch: {
     url: {
       handler() {
@@ -60,6 +56,14 @@ export default {
     },
   },
 
+  mounted() {
+    EventBus.$on('showAllFilters', this.showAllFilters)
+  },
+
+  beforeDestroy() {
+    EventBus.$off('showAllFilters', this.showAllFilters)
+  },
+
   methods: {
     async loadAllFilters() {
       this.allFilters = await API.catalog.getAllFilters(this.url)
@@ -67,10 +71,6 @@ export default {
     showAllFilters() {
       this.visible = true
     },
-  },
-
-  beforeDestroy() {
-    EventBus.$off('showAllFilters', this.showAllFilters)
   },
 }
 </script>

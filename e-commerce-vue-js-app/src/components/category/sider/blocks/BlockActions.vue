@@ -1,8 +1,8 @@
 <template>
   <SiderBlock>
     <div
-    class="button-group"
-    @click="showAllFilters"
+      class="button-group"
+      @click="showAllFilters"
     >
       <a-button>
         Все фильтры

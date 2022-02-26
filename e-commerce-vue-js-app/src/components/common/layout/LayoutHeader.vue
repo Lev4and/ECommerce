@@ -2,7 +2,11 @@
   <a-layout-header
     :style="{ position: 'fixed', zIndex: 1, width: '100%' }"
   >
-    <a-row type="flex" justify="space-between" align="middle">
+    <a-row
+      type="flex"
+      justify="space-between"
+      align="middle"
+    >
       <a-col flex="40px">
         <LayoutHeaderLogo />
       </a-col>

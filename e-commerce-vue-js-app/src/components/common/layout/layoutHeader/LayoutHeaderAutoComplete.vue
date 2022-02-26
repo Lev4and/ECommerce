@@ -1,9 +1,9 @@
 <template>
   <a-auto-complete
+    ref="autoComplete"
     class="global-search"
     size="large"
     style="width: 100%"
-    ref="autoComplete"
     placeholder="Искать на E-Commerce"
     option-label-prop="title"
     @select="onSelect"
@@ -73,11 +73,6 @@ import SearchSuggestionUndefined from '@/components/common/layout/layoutHeader/s
 export default {
   name: 'LayoutHeaderAutoComplete',
 
-  data: () => ({
-    dataSource: [],
-    searchResult: null,
-  }),
-
   components: {
     SearchSuggestionSuggests,
     SearchSuggestionCategory,
@@ -85,6 +80,11 @@ export default {
     SearchSuggestionItem,
     SearchSuggestionUndefined,
   },
+
+  data: () => ({
+    dataSource: [],
+    searchResult: null,
+  }),
 
   computed: {
     url() {

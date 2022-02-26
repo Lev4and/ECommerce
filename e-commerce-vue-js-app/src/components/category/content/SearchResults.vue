@@ -1,7 +1,10 @@
 <template>
   <div class="search-results-container">
     <template v-for="item in searchResults">
-      <SearchResultItem :key="item.action.link" :item="item" />
+      <SearchResultItem
+        :key="item.action.link"
+        :item="item"
+      />
     </template>
   </div>
 </template>
@@ -20,6 +23,7 @@ export default {
   props: {
     category: {
       type: Object,
+      default: null,
       required: false,
     },
   },

@@ -1,7 +1,7 @@
 <template>
   <div class="main-image-container">
     <div class="image-container">
-      <img :src="mainImage" />
+      <img :src="mainImage">
     </div>
   </div>
 </template>

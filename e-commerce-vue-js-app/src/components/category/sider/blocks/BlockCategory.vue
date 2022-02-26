@@ -29,6 +29,7 @@ export default {
   props: {
     categories: {
       type: Array,
+      default: null,
       required: false,
     },
   },

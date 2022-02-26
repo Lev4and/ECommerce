@@ -13,7 +13,11 @@ export default {
   name: 'Header',
 
   props: {
-    category: Object,
+    category: {
+      type: Object,
+      default: null,
+      required: false,
+    },
   },
 
   computed: {
