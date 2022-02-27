@@ -1,6 +1,14 @@
 <template>
   <div id="category">
-    <a-spin :spinning="!isLoading">
+    <a-spin
+      :spinning="!isLoading"
+    >
+      <a-icon
+        type="loading"
+        slot="indicator"
+        style="font-size: 96px"
+        spin
+      />
       <a-row>
         <a-col :span="24">
           <Breadcrumb :category="category" />
@@ -86,6 +94,19 @@ export default {
   },
 }
 </script>
+
+<style>
+#category .ant-spin.ant-spin-spinning {
+  top: 50% !important;
+  left: 50% !important;
+  z-index: 4 !important;
+  width: auto !important;
+  height: auto !important;
+  position: fixed !important;
+  margin-top: -48px !important;
+  margin-left: -48px !important;
+}
+</style>
 
 <style scoped>
 #category {
