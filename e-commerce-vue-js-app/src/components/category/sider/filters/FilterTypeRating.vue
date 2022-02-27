@@ -3,7 +3,10 @@
     :title="filter.name"
     :tooltip="filter.shortDesc"
   >
-    <a-switch :default-checked="filter.values[0].value" />
+    <a-switch
+      :default-checked="filter.values[0].isActive"
+      @change="onChangeChecked"
+    />
   </SiderBlock>
 </template>
 
@@ -19,6 +22,14 @@ export default {
   },
 
   mixins: [filter],
+
+  methods: {
+    onChangeChecked(checked) {
+      if (checked) {
+        console.log(`${this.filter.key}=1`)
+      }
+    },
+  },
 }
 </script>
 

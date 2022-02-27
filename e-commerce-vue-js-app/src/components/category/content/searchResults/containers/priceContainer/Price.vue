@@ -27,7 +27,9 @@ export default {
 
   computed: {
     price() {
-      return _find(this.item.rightState, (state) => state.id === 'atom' && state.atom.type === 'price')?.atom?.price
+      return this.item.rightState
+        ? _find(this.item.rightState, (state) => state.id === 'atom' && state.atom.type === 'price')?.atom?.price
+          : _find(this.item.mainState, (state) => state.id === 'atom' && state.atom.type === 'price')?.atom?.price
     },
     currentPrice() {
       return this.price?.price || ''

@@ -4,9 +4,10 @@
     :tooltip="filter.shortDesc"
   >
     <a-radio-group
-      :class="'radio-group'"
       :name="filter.key"
-      :default-value="1"
+      :class="'radio-group'"
+      :default-value="defaultValue"
+      @change="onCheckedValue"
     >
       <template v-for="value in filter.values">
         <a-radio
@@ -21,6 +22,7 @@
 </template>
 
 <script>
+import { find as _find } from 'lodash'
 import { filter } from '@/services/mixins/filterMixin'
 import SiderBlock from '@/components/category/sider/SiderBlock'
 
@@ -32,6 +34,18 @@ export default {
   },
 
   mixins: [filter],
+
+  computed: {
+    defaultValue() {
+      return _find(this.filter.values, (value) => value.isActive)?.key
+    },
+  },
+
+  methods: {
+    onCheckedValue(event) {
+      console.log(`${this.filter.key}=${event.target.value}`)
+    },
+  },
 }
 </script>
 

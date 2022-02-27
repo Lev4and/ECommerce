@@ -4,8 +4,8 @@
       :spinning="!isLoading"
     >
       <a-icon
-        type="loading"
         slot="indicator"
+        type="loading"
         style="font-size: 96px"
         spin
       />

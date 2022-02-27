@@ -3,21 +3,25 @@
     :title="filter.name"
     :tooltip="filter.shortDesc"
   >
-    <div class="checkbox-group">
+    <a-checkbox-group
+      :class="'checkbox-group'"
+      :default-value="defaultValues"
+      @change="onCheckedValues"
+    >
       <template v-for="value in filter.values">
         <a-checkbox
           :key="value.key"
-          :value="value.value"
-          :default-checked="false"
+          :value="value.key"
         >
           {{ value.color.name }}
         </a-checkbox>
       </template>
-    </div>
+    </a-checkbox-group>
   </SiderBlock>
 </template>
 
 <script>
+import { filter as _filter, map as _map } from 'lodash'
 import { filter } from '@/services/mixins/filterMixin'
 import SiderBlock from '@/components/category/sider/SiderBlock'
 
@@ -29,6 +33,20 @@ export default {
   },
 
   mixins: [filter],
+
+  computed: {
+    defaultValues() {
+      return _map(_filter(this.filter.values, (value) => value.isActive), (item) => item.key)
+    },
+  },
+
+  methods: {
+    onCheckedValues(checkedValues) {
+      if (checkedValues.length > 0) {
+        console.log(`${this.filter.key}=${checkedValues.join(',')}`)
+      }
+    },
+  },
 }
 </script>
 
