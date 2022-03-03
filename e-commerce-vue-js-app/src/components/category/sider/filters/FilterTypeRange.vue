@@ -36,6 +36,7 @@
 </template>
 
 <script>
+import { map as _map, has as _has } from 'lodash'
 import { filter } from '@/services/mixins/filterMixin'
 import SiderBlock from '@/components/category/sider/SiderBlock'
 
@@ -56,16 +57,36 @@ export default {
   watch: {
     range: {
       handler() {
-        console.log(`${this.filter.key}=${this.range?.from || 0};${this.range?.to || 0}`)
+        const range = this.filter.values[0].range
+        if (this.range) {
+          if (this.range?.from && this.range?.to) {
+            if (!(this.range.from === range?.min && this.range.to === range?.max)) {
+              this.saveFilter(`${this.range.from};${this.range.to}`)
+            } else this.clearFilter()
+          } else this.clearFilter()
+        }
       },
       deep: true,
       immediate: true,
     },
-  },
-
-  created() {
-    this.range = this.filter.values[0].range
-    this.sliderRange = [this.range.from, this.range.to]
+    filters: {
+      handler(newValue, oldValue) {
+        const newRange = _has(newValue, this.filter.key) ? newValue[this.filter.key] : ''
+        const oldRange = _has(oldValue, this.filter.key) ? oldValue[this.filter.key] : ''
+        if ((newRange !== oldRange) || (!newRange && !oldRange)) {
+          const range = this.filter.values[0].range
+          const rangeFromRoute = this.valueFromRoute ? _map(this.valueFromRoute.split(';'), (value) => parseFloat(value)) : null
+          if (rangeFromRoute) {
+            range.from = rangeFromRoute[0]
+            range.to = rangeFromRoute[1]
+          }
+          this.range = range
+          this.sliderRange = [range.from, range.to]
+        }
+      },
+      deep: true,
+      immediate: true,
+    },
   },
 
   methods: {

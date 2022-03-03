@@ -47,7 +47,7 @@ export default {
 
   computed: {
     url() {
-      return this.$route.params.url
+      return this.$route.query.url
     },
     widgets() {
       return this.category?.widgetStates

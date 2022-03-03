@@ -4,17 +4,17 @@
     :tooltip="filter.shortDesc"
   >
     <a-radio-group
+      :value="value"
       :name="filter.key"
       :class="'radio-group'"
-      :default-value="defaultValue"
       @change="onCheckedValue"
     >
-      <template v-for="value in filter.values">
+      <template v-for="filterValue in filter.values">
         <a-radio
-          :key="value.key"
-          :value="value.key"
+          :key="filterValue.key"
+          :value="filterValue.key"
         >
-          {{ value.value }}
+          {{ filterValue.value }}
         </a-radio>
       </template>
     </a-radio-group>
@@ -36,14 +36,15 @@ export default {
   mixins: [filter],
 
   computed: {
-    defaultValue() {
-      return _find(this.filter.values, (value) => value.isActive)?.key
+    value() {
+      return this.valueFromRoute ? parseInt(this.valueFromRoute)
+        : _find(this.filter.values, (value) => value.isActive)?.key
     },
   },
 
   methods: {
     onCheckedValue(event) {
-      console.log(`${this.filter.key}=${event.target.value}`)
+      event.target.value ? this.saveFilter(event.target.value) : this.clearFilter()
     },
   },
 }

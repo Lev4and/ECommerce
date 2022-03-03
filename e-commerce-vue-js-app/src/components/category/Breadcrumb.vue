@@ -16,7 +16,7 @@
         </a-breadcrumb-item>
       </template>
       <a-breadcrumb-item :key="url">
-        <router-link :to="{ name: 'Category', params: { url: url } }">
+        <router-link :to="{ name: 'Category', query: { url: url, p: 1 } }">
           <span>{{ categoryName }}</span>
         </router-link>
       </a-breadcrumb-item>
@@ -38,7 +38,7 @@ export default {
 
   computed: {
     url() {
-      return this.$route.params.url
+      return this.$route.query.url
     },
     shared() {
       if (this.category) {

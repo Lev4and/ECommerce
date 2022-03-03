@@ -8,7 +8,7 @@
         slot="title"
         slot-scope="{ url, title }"
       >
-        <router-link :to="{ name: 'Category', params: { url: url } }">
+        <router-link :to="{ name: 'Category', query: { url: url, p: 1 } }">
           <strong>{{ title }}</strong>
         </router-link>
       </template>

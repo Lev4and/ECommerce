@@ -58,14 +58,16 @@ export default {
 
   computed: {
     url() {
-      return this.$route.params.url
+      return this.$route.query.url
     },
   },
 
   watch: {
     url: {
-      handler() {
-        this.loadCategory()
+      handler(newValue, oldValue) {
+        if (newValue !== oldValue) {
+          this.loadCategory()
+        }
       },
       deep: true,
       immediate: true,
@@ -83,13 +85,17 @@ export default {
   methods: {
     async loadCategory() {
       this.isLoading = false
-      this.category = await API.catalog.getCatalog(this.url, 1)
+      this.category = await API.catalog.getCatalog(this.url, this.$route.query.p)
       this.isLoading = true
     },
     async onCurrentPageChanged(page) {
       this.isLoading = false
-      this.category = await API.catalog.getCatalog(this.url, page)
-      this.isLoading = true
+      try {
+        this.category = await API.catalog.getCatalog(this.url, page)
+        this.$router.push({ path: this.$route.path, query: { url: this.$route.query.url, p: page } })
+      } finally {
+        this.isLoading = true
+      }
     },
   },
 }

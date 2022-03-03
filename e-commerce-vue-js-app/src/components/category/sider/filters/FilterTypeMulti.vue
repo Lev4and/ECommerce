@@ -4,8 +4,8 @@
     :tooltip="filter.shortDesc"
   >
     <a-checkbox-group
+      :value="values"
       :class="'checkbox-group'"
-      :default-value="defaultValues"
       @change="onCheckedValues"
     >
       <template v-for="value in filter.values">
@@ -35,16 +35,15 @@ export default {
   mixins: [filter],
 
   computed: {
-    defaultValues() {
-      return _map(_filter(this.filter.values, (value) => value.isActive), (item) => item.key)
+    values() {
+      return this.valueFromRoute ? _map(this.valueFromRoute.split(','), (value) => parseInt(value))
+        : _map(_filter(this.filter.values, (value) => value.isActive), (item) => item.key)
     },
   },
 
   methods: {
     onCheckedValues(checkedValues) {
-      if (checkedValues.length > 0) {
-        console.log(`${this.filter.key}=${checkedValues.join(',')}`)
-      }
+      checkedValues.length > 0 ? this.saveFilter(checkedValues.join(',')) : this.clearFilter()
     },
   },
 }

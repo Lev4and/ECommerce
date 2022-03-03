@@ -18,31 +18,31 @@
         <template v-if="item.meta.type === 'suggests'">
           <SearchSuggestionSuggests
             :key="item.link"
-            :searchSuggestion="item"
+            :search-suggestion="item"
           />
         </template>
         <template v-else-if="item.meta.type === 'category'">
           <SearchSuggestionCategory
             :key="item.link"
-            :searchSuggestion="item"
+            :search-suggestion="item"
           />
         </template>
         <template v-else-if="item.meta.type === 'brand'">
           <SearchSuggestionBrand
             :key="item.link"
-            :searchSuggestion="item"
+            :search-suggestion="item"
           />
         </template>
         <template v-else-if="item.meta.type === 'item'">
           <SearchSuggestionItem
             :key="item.link"
-            :searchSuggestion="item"
+            :search-suggestion="item"
           />
         </template>
         <template v-else>
           <SearchSuggestionUndefined
             :key="item.link"
-            :searchSuggestion="item"
+            :search-suggestion="item"
           />
         </template>
       </a-select-option>
@@ -88,7 +88,7 @@ export default {
 
   computed: {
     url() {
-      return this.$route.params.url
+      return this.$route.query.url
     },
     widgets() {
       return this.searchResult?.widgetStates

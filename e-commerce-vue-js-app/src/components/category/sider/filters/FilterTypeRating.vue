@@ -4,7 +4,7 @@
     :tooltip="filter.shortDesc"
   >
     <a-switch
-      :default-checked="filter.values[0].isActive"
+      :checked="checked"
       @change="onChangeChecked"
     />
   </SiderBlock>
@@ -23,11 +23,15 @@ export default {
 
   mixins: [filter],
 
+  computed: {
+    checked() {
+      return this.valueFromRoute ? Boolean(this.valueFromRoute) : this.filter.values[0].isActive
+    },
+  },
+
   methods: {
     onChangeChecked(checked) {
-      if (checked) {
-        console.log(`${this.filter.key}=1`)
-      }
+      checked ? this.saveFilter(1) : this.clearFilter()
     },
   },
 }

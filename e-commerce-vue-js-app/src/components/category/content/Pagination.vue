@@ -2,7 +2,7 @@
   <a-pagination
     class="pagination"
     :total="totalPages"
-    :default-current="currentPage"
+    :current="currentPage"
     @change="onCurrentPageChanged"
   />
 </template>
@@ -23,7 +23,7 @@ export default {
 
   computed: {
     url() {
-      return this.$route.params.url
+      return this.$route.query.url
     },
     shared() {
       if (this.category) {
@@ -40,7 +40,7 @@ export default {
       return this.catalog?.totalPages || 1
     },
     currentPage() {
-      return this.catalog?.currentPage || 1
+      return parseInt(this.$route.query.p) || 1
     },
   },
 
