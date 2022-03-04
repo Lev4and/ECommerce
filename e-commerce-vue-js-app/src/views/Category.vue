@@ -29,6 +29,7 @@
 </template>
 
 <script>
+import { set as _set, cloneDeep as _cloneDeep } from 'lodash'
 import API from '@/api'
 import EventBus from '@/services/eventBus.js'
 import Breadcrumb from '@/components/category/Breadcrumb'
@@ -57,8 +58,17 @@ export default {
   }),
 
   computed: {
+    query() {
+      return this.$route.query
+    },
     url() {
-      return this.$route.query.url
+      return this.query.url
+    },
+    page() {
+      return this.query.p
+    },
+    filters() {
+      return this.query.filters ? JSON.parse(this.query.filters) : {}
     },
   },
 
@@ -85,14 +95,14 @@ export default {
   methods: {
     async loadCategory() {
       this.isLoading = false
-      this.category = await API.catalog.getCatalog(this.url, this.$route.query.p)
+      this.category = await API.catalog.getCatalog(this.url, this.page, this.filters)
       this.isLoading = true
     },
     async onCurrentPageChanged(page) {
       this.isLoading = false
       try {
-        this.category = await API.catalog.getCatalog(this.url, page)
-        this.$router.push({ path: this.$route.path, query: { url: this.$route.query.url, p: page } })
+        this.category = await API.catalog.getCatalog(this.url, page, this.filters)
+        this.$router.push({ path: this.$route.path, query: _set(_cloneDeep(this.query, 'p', page)) })
       } finally {
         this.isLoading = true
       }

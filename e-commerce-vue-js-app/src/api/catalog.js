@@ -1,8 +1,10 @@
+import { join as _join, map as _map, keys as _keys } from 'lodash'
 import { client } from '@/api/axios'
 
-export const getCatalog = async (url, page = 1) => {
-  const config = { params: { category_url: url, p: page } }
-  return await responseAsync(client, '/api/catalog/', config)
+export const getCatalog = async (url, page = 1, filters = {}) => {
+  console.log(_join(_map(_keys(filters), (key) => `${key}=${filters[key]}`), '&'))
+  const requestBody = { categoryUrl: url, page: page, filters: _join(_map(_keys(filters), (key) => `${key}=${filters[key]}`), '&') || '' }
+  return await responsePostAsync(client, '/api/catalog/', requestBody)
 }
 
 export const getAllFilters = async (url) => {

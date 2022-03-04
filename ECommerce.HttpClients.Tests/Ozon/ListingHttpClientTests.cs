@@ -16,7 +16,7 @@ namespace ECommerce.HttpClients.Tests.Ozon
         [Fact]
         public async Task GetListingAsync_WithCategoryUrlAndPageParams_ReturnNotBeNullResponse()
         {
-            var response = await _httpContext.Ozon.Listing.GetListingAsync("/category/noutbuki-15692/", 1);
+            var response = await _httpContext.Ozon.Listing.GetListingAsync("/category/noutbuki-15692/", 1, "delivery=2");
 
             response.Should().NotBeNull();
         }

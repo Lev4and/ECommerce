@@ -19,13 +19,14 @@ namespace ECommerce.ResourceWebApplication.Controllers
             _httpContext = httpContext;
         }
 
-        [HttpGet]
+        [HttpPost]
         [ProducesResponseType(typeof(Listing), 200)]
-        public async Task<IActionResult> Index([Required][FromQuery(Name = "category_url")] string categoryUrl, [FromQuery(Name = "p")] int page = 1)
+        public async Task<IActionResult> Index([FromBody] CatalogRequestModel requestModel)
         {
-            if (!string.IsNullOrEmpty(categoryUrl) && page > 0)
+            if (requestModel != null)
             {
-                return Ok(await _httpContext.Ozon.Listing.GetListingAsync(categoryUrl, page));
+                return Ok(await _httpContext.Ozon.Listing.GetListingAsync(requestModel.CategoryUrl, 
+                    requestModel.Page, requestModel.Filters));
             }
                 
             return BadRequest();
