@@ -1,16 +1,19 @@
 <template>
   <SiderBlock>
-    <div
-      class="button-group"
-      @click="showAllFilters"
-    >
-      <a-button>
+    <div class="button-group">
+      <a-button @click="showAllFilters">
         Все фильтры
       </a-button>
-      <a-button type="danger">
+      <a-button
+        type="danger"
+        @click="resetFilters"
+      >
         Сбросить
       </a-button>
-      <a-button type="primary">
+      <a-button
+        type="primary"
+        @click="applyFilters"
+      >
         Применить
       </a-button>
     </div>
@@ -31,6 +34,12 @@ export default {
   methods: {
     showAllFilters() {
       EventBus.$emit('show-all-filters')
+    },
+    applyFilters() {
+      EventBus.$emit('apply-filters')
+    },
+    resetFilters() {
+      EventBus.$emit('reset-filters')
     },
   },
 }

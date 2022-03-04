@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import { set as _set, cloneDeep as _cloneDeep } from 'lodash'
+import { set as _set, omit as _omit, cloneDeep as _cloneDeep } from 'lodash'
 import API from '@/api'
 import EventBus from '@/services/eventBus.js'
 import Breadcrumb from '@/components/category/Breadcrumb'
@@ -86,16 +86,31 @@ export default {
 
   mounted() {
     EventBus.$on('current-page-changed', this.onCurrentPageChanged)
+    EventBus.$on('apply-filters', this.applyFilters)
+    EventBus.$on('reset-filters', this.resetFilters)
   },
 
   beforeDestroy() {
     EventBus.$off('current-page-changed', this.onCurrentPageChanged)
+    EventBus.$off('apply-filters', this.applyFilters)
+    EventBus.$off('reset-filters', this.resetFilters)
   },
 
   methods: {
     async loadCategory() {
       this.isLoading = false
       this.category = await API.catalog.getCatalog(this.url, this.page, this.filters)
+      this.isLoading = true
+    },
+    async applyFilters() {
+      this.isLoading = false
+      this.category = await API.catalog.getCatalog(this.url, this.page, this.filters)
+      this.isLoading = true
+    },
+    async resetFilters() {
+      this.isLoading = false
+      this.category = await API.catalog.getCatalog(this.url, 1)
+      this.$router.push({ query: _set(_omit(this.query, 'filters'), 'p', 1) })
       this.isLoading = true
     },
     async onCurrentPageChanged(page) {
