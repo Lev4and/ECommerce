@@ -27,7 +27,7 @@ export default {
     },
     shared() {
       if (this.category) {
-        if (this.category?.shared && this.category?.shared?.length > 0) {
+        if (this.category?.shared?.length > 0) {
           return JSON.parse(this.category?.shared)
         }
       }
@@ -37,10 +37,10 @@ export default {
       return this.shared?.catalog
     },
     totalPages() {
-      return this.catalog?.totalPages || 1
+      return this.catalog?.totalPages * 10 || 1
     },
     currentPage() {
-      return parseInt(this.$route.query.p) || 1
+      return this.catalog?.currentPage || 1
     },
   },
 

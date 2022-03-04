@@ -59,7 +59,7 @@ export default {
 
   computed: {
     query() {
-      return this.$route.query
+      return _cloneDeep(this.$route.query)
     },
     url() {
       return this.query.url
@@ -102,7 +102,7 @@ export default {
       this.isLoading = false
       try {
         this.category = await API.catalog.getCatalog(this.url, page, this.filters)
-        this.$router.push({ path: this.$route.path, query: _set(_cloneDeep(this.query, 'p', page)) })
+        this.$router.push({ query: _set(this.query, 'p', page) })
       } finally {
         this.isLoading = true
       }
