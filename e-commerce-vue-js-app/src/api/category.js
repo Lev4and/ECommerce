@@ -1,13 +1,10 @@
 import { client } from '@/api/axios'
+import { responseGetAsync } from '@/services/utils/responseUtils.js'
 
 export const getCategory = async () => {
-  return await responseAsync(client, '/api/category/', null)
+  return await responseGetAsync(client, '/api/category/', null)
 }
 
 export const getCategoryById = async (id) => {
-  return await responseAsync(client, `/api/category/${id}`, null)
-}
-
-const responseAsync = async (client, url, config) => {
-  return (await client.get(url, config)).data
+  return await responseGetAsync(client, `/api/category/${id}`, null)
 }
