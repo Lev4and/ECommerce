@@ -1,11 +1,12 @@
 <template>
   <a-select
     style="width: 230px"
+    :value="sortingValue"
   >
     <template v-for="item in sortings">
       <a-select-option
         :key="item.id"
-        :value="item.value"
+        :value="item.id"
       >
         {{ item.name }}
       </a-select-option>
@@ -14,6 +15,7 @@
 </template>
 
 <script>
+import { find as _find } from 'lodash'
 import { getWidget } from '@/services/utils/widgetsUtils'
 
 export default {
@@ -39,6 +41,9 @@ export default {
     },
     sortings() {
       return this.searchResultsSort?.sortings || []
+    },
+    sortingValue() {
+      return _find(this.sortings, (value) => value.isActive)?.id
     },
   },
 }
