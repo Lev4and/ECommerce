@@ -1,15 +1,15 @@
 <template>
-  <div id="home" />
+  <div id="product" />
 </template>
 
 <script>
 export default {
-  name: 'Home',
+  name: 'Product',
 }
 </script>
 
 <style scoped>
-#home {
+#product {
   min-height: 100vh;
 }
 </style>

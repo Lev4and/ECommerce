@@ -13,6 +13,9 @@
       <a-col :span="24">
         <Pagination :category="category" />
       </a-col>
+      <a-col :span="24">
+        <SemanticText :category="category" />
+      </a-col>
     </a-row>
   </a-layout-content>
 </template>
@@ -22,6 +25,7 @@ import Sorting from '@/components/category/content/Sorting'
 import FiltersActive from '@/components/category/content/FiltersActive'
 import SearchResults from '@/components/category/content/SearchResults'
 import Pagination from '@/components/category/content/Pagination'
+import SemanticText from '@/components/category/content/SemanticText'
 
 export default {
   name: 'Content',
@@ -31,6 +35,7 @@ export default {
     FiltersActive,
     SearchResults,
     Pagination,
+    SemanticText,
   },
 
   props: {

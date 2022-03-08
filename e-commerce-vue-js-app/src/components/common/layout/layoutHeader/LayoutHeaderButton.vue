@@ -1,5 +1,5 @@
 <template>
-  <router-link :to="{ name: 'Home' }">
+  <router-link :to="{ name: 'Catalog' }">
     <a-button type="primary">
       <strong>
         <a-icon type="unordered-list" /> Каталог

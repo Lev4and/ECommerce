@@ -2,7 +2,7 @@
   <div id="breadcrumb">
     <a-breadcrumb>
       <a-breadcrumb-item :key="0">
-        <router-link :to="{ name: 'Home' }">
+        <router-link :to="{ name: 'Catalog' }">
           <span>Каталог</span>
         </router-link>
       </a-breadcrumb-item>
