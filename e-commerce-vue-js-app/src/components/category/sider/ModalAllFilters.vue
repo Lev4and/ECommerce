@@ -78,6 +78,7 @@ export default {
     },
     applyFilters() {
       EventBus.$emit('apply-filters')
+      this.visible = false
     },
   },
 }

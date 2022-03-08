@@ -100,30 +100,35 @@ export default {
   },
 
   methods: {
-    async loadCategory() {
-      this.isLoading = false
-      this.category = await API.catalog.getCatalog(this.url, this.page, this.filters, this.sorting)
-      this.isLoading = true
-    },
-    async applyFilters() {
-      this.isLoading = false
-      this.category = await API.catalog.getCatalog(this.url, this.page, this.filters, this.sorting)
-      this.isLoading = true
-    },
-    async resetFilters() {
-      this.isLoading = false
-      this.category = await API.catalog.getCatalog(this.url, 1)
-      this.$router.push({ query: _set(_omit(_omit(this.query, 'filters'), 'sorting'), 'p', 1) })
-      this.isLoading = true
-    },
-    async onCurrentPageChanged(page) {
-      this.isLoading = false
+    async load(func) {
       try {
-        this.category = await API.catalog.getCatalog(this.url, page, this.filters, this.sorting)
-        this.$router.push({ query: _set(this.query, 'p', page) })
+        this.isLoading = false
+        await func()
       } finally {
         this.isLoading = true
       }
+    },
+    async loadCategory() {
+      this.load(async () => {
+        this.category = await API.catalog.getCatalog(this.url, this.page, this.filters, this.sorting)
+      })
+    },
+    async applyFilters() {
+      this.load(async () => {
+        this.category = await API.catalog.getCatalog(this.url, this.page, this.filters, this.sorting)
+      })
+    },
+    async resetFilters() {
+      this.load(async () => {
+        this.category = await API.catalog.getCatalog(this.url, 1)
+        this.$router.push({ query: _set(_omit(_omit(this.query, 'filters'), 'sorting'), 'p', 1) })
+      })
+    },
+    async onCurrentPageChanged(page) {
+      this.load(async () => {
+        this.category = await API.catalog.getCatalog(this.url, page, this.filters, this.sorting)
+        this.$router.push({ query: _set(this.query, 'p', page) })
+      })
     },
   },
 }
