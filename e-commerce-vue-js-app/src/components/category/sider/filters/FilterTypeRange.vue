@@ -61,7 +61,7 @@ export default {
         if (this.range) {
           if (this.range?.from && this.range?.to) {
             if (!(this.range.from === range?.min && this.range.to === range?.max)) {
-              this.saveFilter(`${this.range.from};${this.range.to}`)
+              this.saveFilter(`${this.range.from.toFixed(3)};${this.range.to.toFixed(3)}`)
             } else this.clearFilter()
           } else this.clearFilter()
         }

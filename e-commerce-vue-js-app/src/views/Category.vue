@@ -67,6 +67,9 @@ export default {
     page() {
       return this.query.p
     },
+    sorting() {
+      return this.query.sorting
+    },
     filters() {
       return this.query.filters ? JSON.parse(this.query.filters) : {}
     },
@@ -99,24 +102,24 @@ export default {
   methods: {
     async loadCategory() {
       this.isLoading = false
-      this.category = await API.catalog.getCatalog(this.url, this.page, this.filters)
+      this.category = await API.catalog.getCatalog(this.url, this.page, this.filters, this.sorting)
       this.isLoading = true
     },
     async applyFilters() {
       this.isLoading = false
-      this.category = await API.catalog.getCatalog(this.url, this.page, this.filters)
+      this.category = await API.catalog.getCatalog(this.url, this.page, this.filters, this.sorting)
       this.isLoading = true
     },
     async resetFilters() {
       this.isLoading = false
       this.category = await API.catalog.getCatalog(this.url, 1)
-      this.$router.push({ query: _set(_omit(this.query, 'filters'), 'p', 1) })
+      this.$router.push({ query: _set(_omit(_omit(this.query, 'filters'), 'sorting'), 'p', 1) })
       this.isLoading = true
     },
     async onCurrentPageChanged(page) {
       this.isLoading = false
       try {
-        this.category = await API.catalog.getCatalog(this.url, page, this.filters)
+        this.category = await API.catalog.getCatalog(this.url, page, this.filters, this.sorting)
         this.$router.push({ query: _set(this.query, 'p', page) })
       } finally {
         this.isLoading = true

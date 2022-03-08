@@ -3,6 +3,9 @@
     v-model="visible"
     title="Все фильтры"
     :class="'modal-all-filters'"
+    :cancel-text="'Закрыть'"
+    :ok-text="'Применить'"
+    @ok="applyFilters"
   >
     <template v-for="filter in filters">
       <FilterType
@@ -14,9 +17,9 @@
 </template>
 
 <script>
-import { getWidget } from '@/services/utils/widgetsUtils'
 import API from '@/api'
 import EventBus from '@/services/eventBus.js'
+import { getWidget } from '@/services/utils/widgetsUtils'
 import FilterType from '@/components/category/sider/FilterType'
 
 export default {
@@ -72,6 +75,9 @@ export default {
     },
     showAllFilters() {
       this.visible = true
+    },
+    applyFilters() {
+      EventBus.$emit('apply-filters')
     },
   },
 }

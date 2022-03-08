@@ -8,6 +8,9 @@ namespace ECommerce.ResourceWebApplication.Models
         [JsonProperty("page")]
         public int Page { get; set; }
 
+        [JsonProperty("sorting")]
+        public string Sorting { get; set; }
+
         [JsonProperty("filters")]
         public string Filters { get; set; }
 

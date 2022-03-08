@@ -31,3 +31,9 @@ export default {
   },
 }
 </script>
+
+<style>
+#labelsList .tag {
+  font-size: 16px;
+}
+</style>

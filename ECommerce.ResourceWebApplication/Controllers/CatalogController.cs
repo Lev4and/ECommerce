@@ -9,7 +9,7 @@ namespace ECommerce.ResourceWebApplication.Controllers
     [ApiController]
     [Route("api/catalog")]
     [EnableCors("CorsPolicy")]
-    [Produces("application/json")]
+    [Produces("application/json")]  
     public class CatalogController : ControllerBase
     {
         private readonly ECommerce.HttpClients.HttpContext _httpContext;
@@ -26,7 +26,7 @@ namespace ECommerce.ResourceWebApplication.Controllers
             if (requestModel != null)
             {
                 return Ok(await _httpContext.Ozon.Listing.GetListingAsync(requestModel.CategoryUrl, 
-                    requestModel.Page, requestModel.Filters));
+                    requestModel.Page, requestModel.Filters, requestModel.Sorting));
             }
                 
             return BadRequest();

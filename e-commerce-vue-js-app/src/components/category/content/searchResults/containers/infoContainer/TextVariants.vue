@@ -38,3 +38,9 @@ export default {
   },
 }
 </script>
+
+<style>
+#textVariants .tag {
+  font-size: 16px;
+}
+</style>

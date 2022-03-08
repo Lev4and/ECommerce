@@ -5,6 +5,9 @@
         <Sorting :category="category" />
       </a-col>
       <a-col :span="24">
+        <FiltersActive :category="category" />
+      </a-col>
+      <a-col :span="24">
         <SearchResults :category="category" />
       </a-col>
       <a-col :span="24">
@@ -16,6 +19,7 @@
 
 <script>
 import Sorting from '@/components/category/content/Sorting'
+import FiltersActive from '@/components/category/content/FiltersActive'
 import SearchResults from '@/components/category/content/SearchResults'
 import Pagination from '@/components/category/content/Pagination'
 
@@ -24,6 +28,7 @@ export default {
 
   components: {
     Sorting,
+    FiltersActive,
     SearchResults,
     Pagination,
   },

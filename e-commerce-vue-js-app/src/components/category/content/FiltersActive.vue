@@ -1,21 +1,25 @@
 <template>
   <div
-    v-if="tags.length > 0"
-    id="tagList"
+    v-if="filters.length > 0"
+    id="filtersActive"
   >
-    <template v-for="tag in tags">
-      <a-tag
-        :key="tag.link"
-        :class="'tag'"
-        :closable="tag.link === url"
-        :color="tag.link === url ? 'red' : ''"
-        @close="onCloseTag"
-      >
-        <router-link :to="{ name: 'Category', query: { url: tag.link, p: 1 } }">
-          {{ tag.name }}
-        </router-link>
-      </a-tag>
+    <template v-for="filter in filters">
+      <template v-for="value in filter.activeValues">
+        <a-tag
+          :key="`${filter.name}:${value.title}`"
+          :class="'tag'"
+          :closable="true"
+        >
+          {{ filter.name }}: {{ value.title }}
+        </a-tag>
+      </template>
     </template>
+    <a-tag
+      :class="'tag'"
+      :closable="true"
+    >
+      Очистить всё
+    </a-tag>
   </div>
 </template>
 
@@ -23,7 +27,7 @@
 import { getWidget } from '@/services/utils/widgetsUtils'
 
 export default {
-  name: 'TagList',
+  name: 'FiltersActive',
 
   props: {
     category: {
@@ -34,30 +38,21 @@ export default {
   },
 
   computed: {
-    url() {
-      return this.$route.query.url
-    },
     widgets() {
       return this.category?.widgetStates
     },
-    tagList() {
-      return getWidget(this.widgets, 'tagList')
+    filtersActive() {
+      return getWidget(this.widgets, 'searchResultsFiltersActive')
     },
-    tags() {
-      return this.tagList?.items || []
-    },
-  },
-
-  methods: {
-    onCloseTag() {
-      this.$router.push({ name: 'Category', query: { url: this.tagList?.baseUrl, p: 1 } })
+    filters() {
+      return this.filtersActive?.activeFilters || []
     },
   },
 }
 </script>
 
 <style scoped>
-#tagList {
+#filtersActive {
   align-items: center;
   box-sizing: border-box;
   display: flex;
@@ -66,7 +61,7 @@ export default {
   margin-bottom: 18px;
   min-height: 38px;
 }
-#tagList .tag {
+#filtersActive .tag {
   align-items: center;
   background: #eff3f6;
   border-radius: 16px;

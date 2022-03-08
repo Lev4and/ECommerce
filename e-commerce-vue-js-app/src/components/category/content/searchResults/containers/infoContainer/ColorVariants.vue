@@ -47,11 +47,13 @@ export default {
 <style>
 #colorVariants {
   display: flex;
+  flex-wrap: wrap;
   flex-direction: row;
 }
 #colorVariants .tag .color-variants-item .ant-badge-status-dot {
-  width: 12px !important;
-  height: 12px !important;
+  width: 16px !important;
+  height: 16px !important;
+  border: 1px black solid;
 }
 #colorVariants .tag .color-variants-item .ant-badge-status-text {
   display: none;

@@ -10,7 +10,7 @@ namespace ECommerce.HttpClients.Ozon
 
         }
 
-        public async Task<string> GetStringListingAsync(string categoryUrl, int page, string filters)
+        public async Task<string> GetStringListingAsync(string categoryUrl, int page, string filters, string sorting)
         {
             if (string.IsNullOrEmpty(categoryUrl))
             {
@@ -25,16 +25,21 @@ namespace ECommerce.HttpClients.Ozon
             if (filters == null)
             {
                 throw new ArgumentNullException("filters", "The filters must not be empty.");
+            }
+
+            if (sorting == null)
+            {
+                throw new ArgumentNullException("sorting", "The sorting must not be empty.");
             }
 
             UseHeaders(OzonHeaders.JsonHeaders);
             UseCookie();
 
-            return await (await Client.GetAsync($"{OzonRoutes.ListingQuery}?url={categoryUrl}&page={page}&" +
-                $"{filters}&page_changed=true")).GetStringResultAsync();
+            return await (await Client.GetAsync($"{OzonRoutes.ListingQuery}?url={categoryUrl}?page={page}" +
+                $"{(filters != "" ? "&" + filters : "")}{(sorting != "" ? "&sorting=" + sorting : "")}")).GetStringResultAsync();
         }
 
-        public async Task<Listing> GetListingAsync(string categoryUrl, int page, string filters)
+        public async Task<Listing> GetListingAsync(string categoryUrl, int page, string filters, string sorting)
         {
             if (string.IsNullOrEmpty(categoryUrl))
             {
@@ -51,7 +56,12 @@ namespace ECommerce.HttpClients.Ozon
                 throw new ArgumentNullException("filters", "The filters must not be empty.");
             }
 
-            return (await GetStringListingAsync(categoryUrl, page, filters)).GetJsonResult<Listing>();
+            if (sorting == null)
+            {
+                throw new ArgumentNullException("sorting", "The sorting must not be empty.");
+            }
+
+            return (await GetStringListingAsync(categoryUrl, page, filters, sorting)).GetJsonResult<Listing>();
         }
 
         public async Task<string> GetStringSearchSuggestionsAsync(string categoryUrl = "", string searchString = "")
