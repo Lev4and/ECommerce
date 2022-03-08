@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import CategoriesTree from '@/components/home/CategoriesTree'
+import CategoriesTree from '@/components/catalog/CategoriesTree'
 
 export default {
   name: 'Catalog',

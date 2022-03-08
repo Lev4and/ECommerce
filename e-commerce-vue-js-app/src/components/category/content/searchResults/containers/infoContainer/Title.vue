@@ -1,6 +1,8 @@
 <!-- eslint-disable vue/no-v-html -->
 <template>
-  <strong v-html="title" />
+  <router-link :to="{ name: 'Product', query: { url: link } }">
+    <strong v-html="title" />
+  </router-link>
 </template>
 
 <script>
@@ -19,6 +21,9 @@ export default {
   computed: {
     title() {
       return _find(this.item.mainState, (state) => state.id === 'name')?.atom?.textAtom?.text || 'Undefined'
+    },
+    link() {
+      return this.item.action.link
     },
   },
 }
