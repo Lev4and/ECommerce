@@ -1,5 +1,5 @@
 <template>
-  <div id="breadcrumb">
+  <div id="productBreadcrumb">
     <a-breadcrumb>
       <a-breadcrumb-item :key="0">
         <router-link :to="{ name: 'Catalog' }">
@@ -15,21 +15,18 @@
           </router-link>
         </a-breadcrumb-item>
       </template>
-      <a-breadcrumb-item :key="url">
-        <router-link :to="{ name: 'Category', query: { url: url, p: 1 } }">
-          <span>{{ categoryName }}</span>
-        </router-link>
-      </a-breadcrumb-item>
     </a-breadcrumb>
   </div>
 </template>
 
 <script>
+import { getWidget } from '@/services/utils/widgetsUtils'
+
 export default {
-  name: 'Breadcrumb',
+  name: 'ProductBreadcrumb',
 
   props: {
-    category: {
+    product: {
       type: Object,
       default: null,
       required: false,
@@ -37,38 +34,18 @@ export default {
   },
 
   computed: {
-    url() {
-      return this.$route.query.url
-    },
-    shared() {
-      if (this.category) {
-        if (this.category?.shared && this.category?.shared?.length > 0) {
-          return JSON.parse(this.category?.shared)
-        }
-      }
-      return null
-    },
-    catalog() {
-      return this.shared?.catalog
-    },
-    currentCategory() {
-      return this.catalog?.category
-    },
-    categoryName() {
-      return this.currentCategory?.name || ''
+    widgets() {
+      return this.product?.widgetStates
     },
     breadCrumbs() {
-      if (this.catalog) {
-        return this.catalog?.breadCrumbs || []
-      }
-      return []
+      return getWidget(this.widgets, 'breadCrumbsPdp')?.breadCrumbs || []
     },
   },
 }
 </script>
 
 <style scoped>
-#breadcrumb {
+#productBreadcrumb {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
@@ -77,7 +54,7 @@ export default {
   justify-content: flex-start;
   min-height: 26px;
 }
-#breadcrumb .ant-breadcrumb .ant-breadcrumb-link a {
+#productBreadcrumb .ant-breadcrumb .ant-breadcrumb-link a {
   color: #005bff !important;
   display: inline-block !important;
 }

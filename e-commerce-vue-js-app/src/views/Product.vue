@@ -9,7 +9,20 @@
         style="font-size: 96px"
         spin
       />
-      <a-row />
+      <a-row>
+        <a-col :span="24">
+          <ProductBreadcrumb :product="product" />
+        </a-col>
+        <a-col :span="24">
+          <ProductHeader :product="product" />
+        </a-col>
+        <a-col :span="24">
+          <ProductDescription :product="characteristics" />
+        </a-col>
+        <a-col :span="24">
+          <ProductCharacteristics :product="characteristics" />
+        </a-col>
+      </a-row>
     </a-spin>
   </div>
 </template>
@@ -17,9 +30,20 @@
 <script>
 import API from '@/api'
 import { getWidget } from '@/services/utils/widgetsUtils'
+import ProductBreadcrumb from '@/components/product/ProductBreadcrumb'
+import ProductHeader from '@/components/product/ProductHeader'
+import ProductDescription from '@/components/product/ProductDescription'
+import ProductCharacteristics from '@/components/product/ProductCharacteristics'
 
 export default {
   name: 'Product',
+
+  components: {
+    ProductBreadcrumb,
+    ProductHeader,
+    ProductDescription,
+    ProductCharacteristics,
+  },
 
   data: () => ({
     isLoading: false,
