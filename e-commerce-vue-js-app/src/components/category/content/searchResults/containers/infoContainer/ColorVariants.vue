@@ -50,6 +50,9 @@ export default {
   flex-wrap: wrap;
   flex-direction: row;
 }
+#colorVariants .tag {
+  margin: 0 8px 8px 0;
+}
 #colorVariants .tag .color-variants-item .ant-badge-status-dot {
   width: 16px !important;
   height: 16px !important;

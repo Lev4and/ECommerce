@@ -42,5 +42,6 @@ export default {
 <style>
 #textVariants .tag {
   font-size: 16px;
+  margin: 0 8px 8px 0;
 }
 </style>

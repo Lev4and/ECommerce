@@ -55,6 +55,7 @@ div.search-result-item {
   -ms-user-select: text;
   user-select: text;
   width: 100%;
+  min-height: 250px;
 }
 div.search-result-item div.info-price-order-container {
   display: flex;
