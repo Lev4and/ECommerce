@@ -17,10 +17,10 @@
           <ProductHeader :product="product" />
         </a-col>
         <a-col :span="24">
-          <ProductDescription :product="characteristics" />
+          <ProductDescription :product="reviews" />
         </a-col>
         <a-col :span="24">
-          <ProductCharacteristics :product="characteristics" />
+          <ProductCharacteristics :product="reviews" />
         </a-col>
       </a-row>
     </a-spin>

@@ -25,7 +25,7 @@ export default {
 
   computed: {
     checked() {
-      return this.valueFromRoute ? Boolean(this.valueFromRoute) : this.filter.values[0].isActive
+      return Boolean(this.valueFromRoute)
     },
   },
 

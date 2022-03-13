@@ -28,8 +28,7 @@ export const filter = {
     },
     clearFilter() {
       if (_has(this.filters, this.filter.key)) {
-        this.query.filters = JSON.stringify(_omit(this.filters, this.filter.key))
-        this.$router.push({ query: this.query })
+        this.$router.push({ query: _set(this.query, 'filters', JSON.stringify(_omit(this.filters, this.filter.key))) })
       }
     },
   },

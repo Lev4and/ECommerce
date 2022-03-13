@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import { filter as _filter, map as _map } from 'lodash'
+import { map as _map } from 'lodash'
 import { filter } from '@/services/mixins/filterMixin'
 import SiderBlock from '@/components/category/sider/SiderBlock'
 
@@ -36,8 +36,7 @@ export default {
 
   computed: {
     values() {
-      return this.valueFromRoute ? _map(this.valueFromRoute.split(','), (value) => parseInt(value))
-        : _map(_filter(this.filter.values, (value) => value.isActive), (item) => item.key)
+      return _map(this.valueFromRoute.split(','), (value) => parseInt(value))
     },
   },
 

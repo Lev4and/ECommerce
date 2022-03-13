@@ -52,7 +52,6 @@ export default {
 <style>
 .tns-carousel-wrapper {
   display: flex;
-  overflow: hidden;
   position: relative;
 }
 .tns-carousel-wrapper .tns-carousel-inner {
@@ -214,7 +213,7 @@ export default {
   position: absolute;
   left: 0;
   width: 100%;
-  bottom: 0rem;
+  bottom: -25px;
   z-index: 100;
   display: flex;
   text-align: center;
@@ -419,7 +418,9 @@ export default {
 .card:hover > .card-img-hover [data-controls] {
   opacity: 1 !important;
 }
-
+.tns-inner {
+  overflow: hidden;
+}
 .tns-center .tns-inner {
   margin-right: -1rem !important;
 }

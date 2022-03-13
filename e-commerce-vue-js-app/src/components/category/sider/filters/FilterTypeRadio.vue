@@ -22,7 +22,6 @@
 </template>
 
 <script>
-import { find as _find } from 'lodash'
 import { filter } from '@/services/mixins/filterMixin'
 import SiderBlock from '@/components/category/sider/SiderBlock'
 
@@ -37,8 +36,7 @@ export default {
 
   computed: {
     value() {
-      return this.valueFromRoute ? parseInt(this.valueFromRoute)
-        : _find(this.filter.values, (value) => value.isActive)?.key
+      return parseInt(this.valueFromRoute)
     },
   },
 

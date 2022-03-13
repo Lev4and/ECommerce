@@ -116,12 +116,14 @@ export default {
     async applyFilters() {
       this.load(async () => {
         this.category = await API.catalog.getCatalog(this.url, this.page, this.filters, this.sorting)
+        EventBus.$emit('load-all-filters')
       })
     },
     async resetFilters() {
       this.load(async () => {
         this.category = await API.catalog.getCatalog(this.url, 1)
         this.$router.push({ query: _set(_omit(_omit(this.query, 'filters'), 'sorting'), 'p', 1) })
+        EventBus.$emit('load-all-filters')
       })
     },
     async onCurrentPageChanged(page) {

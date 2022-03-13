@@ -33,7 +33,7 @@ namespace ECommerce.HttpClients.Tests.Ozon
         [Fact]
         public async Task GetAllFiltersAsync_WithCategoryUrlParam_ReturnNotBeNullResponse()
         {
-            var response = await _httpContext.Ozon.Listing.GetAllFiltersAsync("/category/noutbuki-15692/");
+            var response = await _httpContext.Ozon.Listing.GetAllFiltersAsync("/category/noutbuki-15692/", "");
 
             response.Should().NotBeNull();
         }

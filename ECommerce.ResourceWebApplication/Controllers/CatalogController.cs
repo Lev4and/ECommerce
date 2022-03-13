@@ -44,13 +44,14 @@ namespace ECommerce.ResourceWebApplication.Controllers
             return BadRequest();
         }
 
-        [HttpGet("allFilters")]
+        [HttpPost("allFilters")]
         [ProducesResponseType(typeof(AllFilters), 200)]
-        public async Task<IActionResult> AllFilters([Required][FromQuery(Name = "category_url")] string categoryUrl)
+        public async Task<IActionResult> AllFilters([FromBody] AllFiltersRequestModel requestModel)
         {
-            if (!string.IsNullOrEmpty(categoryUrl))
+            if (requestModel != null)
             {
-                return Ok(await _httpContext.Ozon.Listing.GetAllFiltersAsync(categoryUrl));
+                return Ok(await _httpContext.Ozon.Listing.GetAllFiltersAsync(requestModel.CategoryUrl, 
+                    requestModel.Filters));
             }
 
             return BadRequest();

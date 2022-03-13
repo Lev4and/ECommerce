@@ -80,28 +80,38 @@ namespace ECommerce.HttpClients.Ozon
             return (await GetStringSearchSuggestionsAsync(categoryUrl, searchString)).GetJsonResult<SearchSuggestions>();
         }
 
-        public async Task<string> GetStringAllFiltersAsync(string categoryUrl)
+        public async Task<string> GetStringAllFiltersAsync(string categoryUrl, string filters)
         {
             if (string.IsNullOrEmpty(categoryUrl))
             {
                 throw new ArgumentNullException("categoryUrl", "The category url must not be empty.");
+            }
+
+            if (filters == null)
+            {
+                throw new ArgumentNullException("filters", "The filters must not be empty.");
             }
 
             UseHeaders(OzonHeaders.JsonHeaders);
             UseCookie();
 
             return await (await Client.GetAsync($"{OzonRoutes.AllFiltersQuery}{categoryUrl}" +
-                $"?page_changed=true")).GetStringResultAsync();
+                $"?{(filters != "" ? filters : "")}")).GetStringResultAsync();
         }
 
-        public async Task<AllFilters> GetAllFiltersAsync(string categoryUrl)
+        public async Task<AllFilters> GetAllFiltersAsync(string categoryUrl, string filters)
         {
             if (string.IsNullOrEmpty(categoryUrl))
             {
                 throw new ArgumentNullException("categoryUrl", "The category url must not be empty.");
             }
 
-            return (await GetStringAllFiltersAsync(categoryUrl)).GetJsonResult<AllFilters>();
+            if (filters == null)
+            {
+                throw new ArgumentNullException("filters", "The filters must not be empty.");
+            }
+
+            return (await GetStringAllFiltersAsync(categoryUrl, filters)).GetJsonResult<AllFilters>();
         }
     }
 }

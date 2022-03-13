@@ -62,16 +62,18 @@ export default {
   },
 
   mounted() {
+    EventBus.$on('load-all-filters', this.loadAllFilters)
     EventBus.$on('show-all-filters', this.showAllFilters)
   },
 
   beforeDestroy() {
+    EventBus.$off('load-all-filters', this.loadAllFilters)
     EventBus.$off('show-all-filters', this.showAllFilters)
   },
 
   methods: {
     async loadAllFilters() {
-      this.allFilters = await API.catalog.getAllFilters(this.url)
+      this.allFilters = await API.catalog.getAllFilters(this.url, this.$route.query.filters)
     },
     showAllFilters() {
       this.visible = true
