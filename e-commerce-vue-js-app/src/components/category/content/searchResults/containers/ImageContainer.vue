@@ -1,6 +1,6 @@
 <template>
   <div class="main-image-container">
-    <div class="tns-carousel-wrapper card-img-top card-img-hover">
+    <div class="tns-carousel-wrapper">
       <VueTinySlider
         mode="carousel"
         :items="1"
