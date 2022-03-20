@@ -1,6 +1,5 @@
 <template>
-  <div id="productCharacteristics">
-    <h2>Характеристики</h2>
+  <div id="productMainCharacteristics">
     <template v-for="section in characteristics">
       <div
         :key="section.title"
@@ -67,7 +66,7 @@
 import { getWidget } from '@/services/utils/widgetsUtils'
 
 export default {
-  name: 'ProductCharacteristics',
+  name: 'ProductMainCharacteristics',
 
   props: {
     product: {
@@ -89,10 +88,10 @@ export default {
 </script>
 
 <style scoped>
-#productCharacteristics .section-characteristics:nth-child(2n + 1) {
+#productMainCharacteristics .section-characteristics:nth-child(2n + 1) {
   margin: 36px 0;
 }
-.characteristic .characteristic-values .characteristic-value:not(:last-child)::after {
+.productMainCharacteristics .characteristic-values .characteristic-value:not(:last-child)::after {
   content: ", ";
 }
 </style>

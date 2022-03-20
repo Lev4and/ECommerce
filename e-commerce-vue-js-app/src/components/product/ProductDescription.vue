@@ -25,7 +25,7 @@ export default {
       return this.product?.widgetStates
     },
     description() {
-      return getWidget(this.widgets, 'webDescription')?.richAnnotation || ''
+      return getWidget(this.widgets, 'webDescription')?.richAnnotation || 'Отсутствует'
     },
   },
 }

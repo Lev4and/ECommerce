@@ -15,7 +15,7 @@
             <a-row
               type="flex"
               align="middle"
-              :gutter="[16,0]"
+              :gutter="[16,8]"
             >
               <a-col>
                 <a-rate
@@ -26,6 +26,9 @@
               </a-col>
               <a-col>
                 <a-icon type="message" /> {{ questionCountText }}
+              </a-col>
+              <a-col>
+                <a-icon type="video-camera" /> {{ videosCountText }}
               </a-col>
               <a-col>
                 <a-icon type="heart" /> В избранное
@@ -83,8 +86,14 @@ export default {
     questionCount() {
       return getWidget(this.widgets, 'webQuestionCount')
     },
+    videosCount() {
+      return getWidget(this.widgets, 'webVideosCount')
+    },
     questionCountText() {
       return this.questionCount?.text || '0 вопросов'
+    },
+    videosCountText() {
+      return this.videosCount?.text || '0 видео'
     },
     totalScore() {
       return this.reviewProductScore?.totalScore || 0
@@ -103,6 +112,9 @@ export default {
 </script>
 
 <style>
+#productHeader .ant-rate {
+  font-size: 14px;
+}
 #productHeader div.ant-divider.ant-divider-horizontal {
   margin: 12px 0;
 }
