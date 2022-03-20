@@ -14,6 +14,7 @@ const defaultState = {
   name: '',
   resultsHeader: null,
   resultsFilters: null,
+  tagList: null,
   tags: [],
 }
 
@@ -57,8 +58,11 @@ const mutations = {
   setResultsFilters(state) {
     state.resultsFilters = getWidget(state.widgets, 'searchResultsFilters')
   },
+  setTagList(state) {
+    state.tagList = getWidget(state.widgets, 'tagList')
+  },
   setTags(state) {
-    state.tags = getWidget(state.widgets, 'tagList')?.items || []
+    state.tags = state.tagList?.items || []
   },
 }
 
@@ -99,6 +103,9 @@ const getters = {
   resultsFilters(state) {
     return state.resultsFilters
   },
+  tagList(state) {
+    return state.tagList
+  },
   tags(state) {
     return state.tags
   },
@@ -118,6 +125,7 @@ const actions = {
     commit('setName')
     commit('setResultsHeader')
     commit('setResultsFilters')
+    commit('setTagList')
     commit('setTags')
   },
 }

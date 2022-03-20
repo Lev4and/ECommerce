@@ -7,6 +7,7 @@
       <a-tag
         :key="tag.link"
         :class="'tag'"
+        :visible="true"
         :closable="tag.link === url"
         :color="tag.link === url ? 'red' : ''"
         @close="onCloseTag"
@@ -27,6 +28,7 @@ export default {
 
   computed: {
     ...mapGetters({
+      tagList: 'category/tagList',
       tags: 'category/tags',
     }),
     url() {
