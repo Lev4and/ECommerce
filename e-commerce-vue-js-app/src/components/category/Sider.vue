@@ -20,8 +20,8 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import { map as _map } from 'lodash'
-import { getWidget } from '@/services/utils/widgetsUtils'
 import ModalAllFilters from '@/components/category/sider/ModalAllFilters'
 import BlockCategory from '@/components/category/sider/blocks/BlockCategory'
 import BlockActions from '@/components/category/sider/blocks/BlockActions'
@@ -37,29 +37,18 @@ export default {
     FilterType,
   },
 
-  props: {
-    category: {
-      type: Object,
-      default: null,
-      required: false,
-    },
-  },
-
   computed: {
+    ...mapGetters({
+      resultsFilters: 'category/resultsFilters',
+    }),
     url() {
       return this.$route.query.url
     },
-    widgets() {
-      return this.category?.widgetStates
-    },
-    searchResultsFilters() {
-      return getWidget(this.widgets, 'searchResultsFilters')
-    },
     categories() {
-      return this.mapCategories(this.searchResultsFilters?.categories)
+      return this.mapCategories(this.resultsFilters?.categories)
     },
     filters() {
-      return this.searchResultsFilters?.filters || []
+      return this.resultsFilters?.filters || []
     },
   },
 

@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import { getWidget } from '@/services/utils/widgetsUtils'
+import { mapGetters } from 'vuex'
 import SearchResultItem from '@/components/category/content/searchResults/SearchResultItem'
 
 export default {
@@ -20,21 +20,10 @@ export default {
     SearchResultItem,
   },
 
-  props: {
-    category: {
-      type: Object,
-      default: null,
-      required: false,
-    },
-  },
-
   computed: {
-    widgets() {
-      return this.category?.widgetStates
-    },
-    searchResults() {
-      return getWidget(this.widgets, 'searchResultsV2')?.items || []
-    },
+    ...mapGetters({
+      searchResults: 'category/searchResults',
+    }),
   },
 }
 </script>

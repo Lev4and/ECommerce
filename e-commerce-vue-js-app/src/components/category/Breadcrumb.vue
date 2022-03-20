@@ -25,43 +25,18 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
   name: 'Breadcrumb',
 
-  props: {
-    category: {
-      type: Object,
-      default: null,
-      required: false,
-    },
-  },
-
   computed: {
+    ...mapGetters({
+      breadCrumbs: 'category/breadCrumbs',
+      categoryName: 'category/name',
+    }),
     url() {
       return this.$route.query.url
-    },
-    shared() {
-      if (this.category) {
-        if (this.category?.shared && this.category?.shared?.length > 0) {
-          return JSON.parse(this.category?.shared)
-        }
-      }
-      return null
-    },
-    catalog() {
-      return this.shared?.catalog
-    },
-    currentCategory() {
-      return this.catalog?.category
-    },
-    categoryName() {
-      return this.currentCategory?.name || ''
-    },
-    breadCrumbs() {
-      if (this.catalog) {
-        return this.catalog?.breadCrumbs || []
-      }
-      return []
     },
   },
 }

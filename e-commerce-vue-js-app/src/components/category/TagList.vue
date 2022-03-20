@@ -20,31 +20,17 @@
 </template>
 
 <script>
-import { getWidget } from '@/services/utils/widgetsUtils'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'TagList',
 
-  props: {
-    category: {
-      type: Object,
-      default: null,
-      required: false,
-    },
-  },
-
   computed: {
+    ...mapGetters({
+      tags: 'category/tags',
+    }),
     url() {
       return this.$route.query.url
-    },
-    widgets() {
-      return this.category?.widgetStates
-    },
-    tagList() {
-      return getWidget(this.widgets, 'tagList')
-    },
-    tags() {
-      return this.tagList?.items || []
     },
   },
 

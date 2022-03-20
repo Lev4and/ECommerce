@@ -16,21 +16,16 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import { find as _find, cloneDeep as _cloneDeep, set as _set, has as _has, omit as _omit } from 'lodash'
-import { getWidget } from '@/services/utils/widgetsUtils'
 
 export default {
   name: 'Sorting',
 
-  props: {
-    category: {
-      type: Object,
-      default: null,
-      required: false,
-    },
-  },
-
   computed: {
+    ...mapGetters({
+      sortings: 'category/sortings',
+    }),
     url() {
       return this.$route.query.url
     },
@@ -42,12 +37,6 @@ export default {
     },
     widgets() {
       return this.category?.widgetStates
-    },
-    searchResultsSort() {
-      return getWidget(this.widgets, 'searchResultsSort')
-    },
-    sortings() {
-      return this.searchResultsSort?.sortings || []
     },
     sortingValue() {
       return this.sorting ? this.sorting : _find(this.sortings, (value) => value.isActive)?.urlValue

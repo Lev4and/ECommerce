@@ -2,19 +2,19 @@
   <a-layout-content :class="'category-layout-content'">
     <a-row :gutter="[0,48]">
       <a-col :span="24">
-        <Sorting :category="category" />
+        <Sorting />
       </a-col>
       <a-col :span="24">
-        <FiltersActive :category="category" />
+        <FiltersActive />
       </a-col>
       <a-col :span="24">
-        <SearchResults :category="category" />
+        <SearchResults />
       </a-col>
       <a-col :span="24">
-        <Pagination :category="category" />
+        <Pagination />
       </a-col>
       <a-col :span="24">
-        <SemanticText :category="category" />
+        <SemanticText />
       </a-col>
     </a-row>
   </a-layout-content>
@@ -36,14 +36,6 @@ export default {
     SearchResults,
     Pagination,
     SemanticText,
-  },
-
-  props: {
-    category: {
-      type: Object,
-      default: null,
-      required: false,
-    },
   },
 }
 </script>

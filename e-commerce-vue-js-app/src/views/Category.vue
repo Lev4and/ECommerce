@@ -11,18 +11,18 @@
       />
       <a-row>
         <a-col :span="24">
-          <Breadcrumb :category="category" />
+          <Breadcrumb />
         </a-col>
         <a-col :span="24">
-          <Header :category="category" />
+          <Header />
         </a-col>
         <a-col :span="24">
-          <TagList :category="category" />
+          <TagList />
         </a-col>
       </a-row>
       <a-layout>
-        <Sider :category="category" />
-        <Content :category="category" />
+        <Sider />
+        <Content />
       </a-layout>
     </a-spin>
   </div>
@@ -104,6 +104,7 @@ export default {
       try {
         this.isLoading = false
         await func()
+        await this.$store.dispatch('category/init', this.category)
       } finally {
         this.isLoading = true
       }

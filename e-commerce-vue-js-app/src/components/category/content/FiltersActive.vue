@@ -1,9 +1,9 @@
 <template>
   <div
-    v-if="filters.length > 0"
+    v-if="activeFilters.length > 0"
     id="filtersActive"
   >
-    <template v-for="filter in filters">
+    <template v-for="filter in activeFilters">
       <template v-for="value in filter.activeValues">
         <a-tag
           :key="`${filter.name}:${value.title}`"
@@ -24,29 +24,15 @@
 </template>
 
 <script>
-import { getWidget } from '@/services/utils/widgetsUtils'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'FiltersActive',
 
-  props: {
-    category: {
-      type: Object,
-      default: null,
-      required: false,
-    },
-  },
-
   computed: {
-    widgets() {
-      return this.category?.widgetStates
-    },
-    filtersActive() {
-      return getWidget(this.widgets, 'searchResultsFiltersActive')
-    },
-    filters() {
-      return this.filtersActive?.activeFilters || []
-    },
+    ...mapGetters({
+      activeFilters: 'category/activeFilters',
+    }),
   },
 }
 </script>

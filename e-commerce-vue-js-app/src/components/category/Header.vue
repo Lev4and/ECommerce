@@ -7,45 +7,18 @@
 </template>
 
 <script>
-import { getWidget } from '@/services/utils/widgetsUtils'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'Header',
 
-  props: {
-    category: {
-      type: Object,
-      default: null,
-      required: false,
-    },
-  },
-
   computed: {
-    widgets() {
-      return this.category?.widgetStates
-    },
-    catalogResultsHeader() {
-      return getWidget(this.widgets, 'catalogResultsHeader')
-    },
+    ...mapGetters({
+      resultsHeader: 'category/resultsHeader',
+      categoryName: 'category/name',
+    }),
     totalFound() {
-      return this.catalogResultsHeader?.totalFound || '0 товаров'
-    },
-    shared() {
-      if (this.category) {
-        if (this.category?.shared && this.category?.shared?.length > 0) {
-          return JSON.parse(this.category?.shared)
-        }
-      }
-      return null
-    },
-    catalog() {
-      return this.shared?.catalog
-    },
-    currentCategory() {
-      return this.catalog?.category
-    },
-    categoryName() {
-      return this.currentCategory?.name || ''
+      return this.resultsHeader?.totalFound || '0 товаров'
     },
   },
 }
