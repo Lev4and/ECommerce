@@ -16,9 +16,12 @@
     </template>
     <a-tag
       :class="'tag'"
+      :visible="true"
       :closable="true"
     >
-      Очистить всё
+      <router-link :to="{ name: 'Category', query: { url: activeFiltersWidget.uriBase, p: 1 } }">
+        Очистить всё
+      </router-link>
     </a-tag>
   </div>
 </template>
@@ -32,6 +35,7 @@ export default {
   computed: {
     ...mapGetters({
       activeFilters: 'category/activeFilters',
+      activeFiltersWidget: 'category/activeFiltersWidget',
     }),
   },
 }

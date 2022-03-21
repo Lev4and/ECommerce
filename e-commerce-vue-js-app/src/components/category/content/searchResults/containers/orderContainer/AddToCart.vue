@@ -1,5 +1,5 @@
 <template>
-  <div class="add-to-cart">
+  <div id="addToCart">
     <a-button type="primary">
       <strong>
         В корзину
@@ -15,5 +15,9 @@ export default {
 </script>
 
 <style scoped>
-
+#addToCart button {
+  width: 50%;
+  height: 50px;
+  font-size: 18px;
+}
 </style>

@@ -31,4 +31,7 @@ export default {
   display: flex;
   flex-direction: column;
 }
+.price-container div + div {
+  margin-top: 10px;
+}
 </style>

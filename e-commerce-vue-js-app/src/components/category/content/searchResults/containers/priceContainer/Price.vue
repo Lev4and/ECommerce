@@ -1,14 +1,8 @@
 <template>
-  <div class="current-original-price">
-    <div class="current-price">
-      <span style="color: #f5222d">{{ currentPrice }}</span>
-    </div>
-    <div
-      v-if="originalPrice"
-      class="original-price"
-    >
-      <span>{{ originalPrice }}</span>
-    </div>
+  <div id="price">
+    <strong class="actual-price">
+      {{ currentPrice }} <sub v-if="originalPrice" class="original-price">{{ originalPrice }}</sub>
+    </strong>
   </div>
 </template>
 
@@ -42,22 +36,22 @@ export default {
 </script>
 
 <style scoped>
-.current-original-price {
-  align-items: center;
-  display: flex;
-  flex-wrap: wrap;
-}
-.current-original-price div.original-price {
-  font-size: 14px;
-  line-height: 14px;
-  position: relative;
-  color: rgb(0, 26, 52);
-}
-.current-original-price div.current-price {
+.actual-price {
+  font-size: 24px;
   color: rgb(249, 17, 85);
-  font-size: 20px;
-  font-weight: 700;
-  line-height: 26px;
-  margin: 0 4px 0 0;
+}
+.original-price {
+  color: black;
+}
+.original-price::after {
+  height: 3px;
+  content: "";
+  display: block;
+  left: 0;
+  position: absolute;
+  top: calc(50% - 1px);
+  transform: rotate(-2deg);
+  background-color: red;
+  width: 100%;
 }
 </style>

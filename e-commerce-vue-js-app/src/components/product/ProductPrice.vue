@@ -8,7 +8,7 @@
         >
           <a-col>
             <h1 class="actual-price">
-              {{ actualPrice }} <sub v-if="actualPrice" class="original-price">{{ actualPrice }}</sub>
+              {{ actualPrice }} <sub v-if="originalPrice" class="original-price">{{ originalPrice }}</sub>
             </h1>
           </a-col>
         </a-row>

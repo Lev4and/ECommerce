@@ -4,6 +4,7 @@ import { getWidget } from '@/services/utils/widgetsUtils'
 const defaultState = {
   category: null,
   widgets: null,
+  activeFiltersWidget: null,
   activeFilters: [],
   shared: null,
   catalog: null,
@@ -24,8 +25,11 @@ const mutations = {
   setWidgets(state) {
     state.widgets = state.category.widgetStates
   },
+  setActiveFiltersWidget(state) {
+    state.activeFiltersWidget = getWidget(state.widgets, 'searchResultsFiltersActive')
+  },
   setActiveFilters(state) {
-    state.activeFilters = getWidget(state.widgets, 'searchResultsFiltersActive')?.activeFilters || []
+    state.activeFilters = state.activeFiltersWidget?.activeFilters || []
   },
   setShared(state) {
     if (state.category) {
@@ -73,6 +77,9 @@ const getters = {
   widgets(state) {
     return state.widgets
   },
+  activeFiltersWidget(state) {
+    return state.activeFiltersWidget
+  },
   activeFilters(state) {
     return state.activeFilters
   },
@@ -117,6 +124,7 @@ const actions = {
     commit('setShared')
     commit('setCatalog')
     commit('setWidgets')
+    commit('setActiveFiltersWidget')
     commit('setActiveFilters')
     commit('setSearchResults')
     commit('setSemanticText')

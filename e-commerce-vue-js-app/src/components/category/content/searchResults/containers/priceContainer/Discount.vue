@@ -53,7 +53,6 @@ export default {
   white-space: nowrap;
   color: rgb(255, 255, 255);
   font-weight: 700;
-  font-size: 14px;
-  line-height: 18px;
+  font-size: 16px;
 }
 </style>
