@@ -1,5 +1,5 @@
 import { cloneDeep as _cloneDeep } from 'lodash'
-import { getWidget } from '@/services/utils/widgetsUtils'
+import { getWidget, getWidgets } from '@/services/utils/widgetsUtils'
 
 const defaultState = {
   category: null,
@@ -17,6 +17,9 @@ const defaultState = {
   resultsFilters: null,
   tagList: null,
   tags: [],
+  skuLine: [],
+  skuLineLR: [],
+  skuShelfGoods: [],
 }
 
 const state = _cloneDeep(defaultState)
@@ -68,6 +71,15 @@ const mutations = {
   setTags(state) {
     state.tags = state.tagList?.items || []
   },
+  setSkuLine(state) {
+    state.skuLine = getWidgets(state.widgets, 'skuLine')
+  },
+  setSkuLineLR(state) {
+    state.skuLineLR = getWidgets(state.widgets, 'skuLineLR')
+  },
+  setSkuShelfGoods(state) {
+    state.skuShelfGoods = getWidgets(state.widgets, 'skuShelfGoods')
+  },
 }
 
 const getters = {
@@ -116,6 +128,15 @@ const getters = {
   tags(state) {
     return state.tags
   },
+  skuLine(state) {
+    return state.skuLine
+  },
+  skuLineLR(state) {
+    return state.skuLineLR
+  },
+  skuShelfGoods(state) {
+    return state.skuShelfGoods
+  },
 }
 
 const actions = {
@@ -135,6 +156,9 @@ const actions = {
     commit('setResultsFilters')
     commit('setTagList')
     commit('setTags')
+    commit('setSkuLine')
+    commit('setSkuLineLR')
+    commit('setSkuShelfGoods')
   },
 }
 

@@ -48,8 +48,12 @@ export default {
 </script>
 
 <style scoped>
+#productGallery {
+  padding: 20px;
+}
 .ant-carousel >>> .slick-dots {
   display: flex !important;
+  position: relative;
   justify-content: space-between !important;
   height: auto;
 }
@@ -62,11 +66,15 @@ export default {
   object-fit: contain;
 }
 .ant-carousel >>> .slick-thumb {
-  bottom: -45px;
+  bottom: -20px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
 }
 .ant-carousel >>> .slick-thumb li {
+  margin: 5px;
   width: 60px;
-  height: 45px;
+  height: 60px;
 }
 .ant-carousel >>> .slick-thumb li img {
   width: 100%;

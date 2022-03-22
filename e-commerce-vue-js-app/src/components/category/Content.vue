@@ -14,6 +14,9 @@
         <Pagination />
       </a-col>
       <a-col :span="24">
+        <CategoryGoods />
+      </a-col>
+      <a-col :span="24">
         <SemanticText />
       </a-col>
     </a-row>
@@ -25,6 +28,7 @@ import Sorting from '@/components/category/content/Sorting'
 import FiltersActive from '@/components/category/content/FiltersActive'
 import SearchResults from '@/components/category/content/SearchResults'
 import Pagination from '@/components/category/content/Pagination'
+import CategoryGoods from '@/components/category/content/CategoryGoods'
 import SemanticText from '@/components/category/content/SemanticText'
 
 export default {
@@ -35,6 +39,7 @@ export default {
     FiltersActive,
     SearchResults,
     Pagination,
+    CategoryGoods,
     SemanticText,
   },
 }
