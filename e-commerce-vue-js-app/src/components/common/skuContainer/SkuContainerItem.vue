@@ -18,7 +18,12 @@
       </a-col>
       <a-col :span="24">
         <router-link :to="{ name: 'Product', query: { url: product.link } }">
-          <span class="title">{{ title }}</span>
+          <a-tooltip>
+            <template slot="title">
+              {{ title }}
+            </template>
+            <span class="title">{{ title }}</span>
+          </a-tooltip>
         </router-link>
       </a-col>
       <a-col :span="24">

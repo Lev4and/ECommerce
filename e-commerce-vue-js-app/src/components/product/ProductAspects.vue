@@ -40,5 +40,7 @@ export default {
 </script>
 
 <style scoped>
-
+#productAspects div + div {
+  margin-top: 12px;
+}
 </style>

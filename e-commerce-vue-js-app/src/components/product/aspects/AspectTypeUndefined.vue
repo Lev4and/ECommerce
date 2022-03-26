@@ -1,6 +1,6 @@
 <template>
   <div id="aspectTypeUndefined">
-
+    <span class="title">{{ aspect.type }}</span>
   </div>
 </template>
 

@@ -3,8 +3,11 @@
     <template v-if="aspect.type === 'textBar'">
       <AspectTypeTextBar :aspect="aspect" />
     </template>
-    <template v-else-if="aspect.type === 'colors'">
+    <template v-else-if="aspect.type === 'colors' || aspect.type === 'colorsMix'">
       <AspectTypeColors :aspect="aspect" />
+    </template>
+    <template v-else-if="aspect.type === 'sizes'">
+      <AspectTypeSizes :aspect="aspect" />
     </template>
     <template v-else>
       <AspectTypeUndefined :aspect="aspect" />
@@ -15,6 +18,7 @@
 <script>
 import AspectTypeTextBar from '@/components/product/aspects/AspectTypeTextBar'
 import AspectTypeColors from '@/components/product/aspects/AspectTypeColors'
+import AspectTypeSizes from '@/components/product/aspects/AspectTypeSizes'
 import AspectTypeUndefined from '@/components/product/aspects/AspectTypeUndefined'
 
 export default {
@@ -23,6 +27,7 @@ export default {
   components: {
     AspectTypeTextBar,
     AspectTypeColors,
+    AspectTypeSizes,
     AspectTypeUndefined,
   },
 

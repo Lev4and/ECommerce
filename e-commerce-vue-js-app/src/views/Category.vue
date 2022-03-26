@@ -24,6 +24,9 @@
         <Sider />
         <Content />
       </a-layout>
+      <a-col :span="24">
+        <CategoryGoods />
+      </a-col>
     </a-spin>
   </div>
 </template>
@@ -37,6 +40,7 @@ import Header from '@/components/category/Header'
 import TagList from '@/components/category/TagList'
 import Sider from '@/components/category/Sider'
 import Content from '@/components/category/Content'
+import CategoryGoods from '@/components/category/content/CategoryGoods'
 
 export default {
   name: 'Category',
@@ -47,6 +51,7 @@ export default {
     TagList,
     Sider,
     Content,
+    CategoryGoods,
   },
 
   data: () => ({

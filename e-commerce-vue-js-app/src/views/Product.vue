@@ -135,8 +135,14 @@ export default {
     },
   },
 
-  mounted() {
-    this.loadProduct()
+  watch: {
+    productUrl: {
+      handler() {
+        this.loadProduct()
+      },
+      deep: true,
+      immediate: true,
+    },
   },
 
   methods: {

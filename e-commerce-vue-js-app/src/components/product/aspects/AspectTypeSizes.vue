@@ -1,6 +1,6 @@
 <template>
-  <div id="aspectTypeColors" ref="aspectTypeColors">
-    <span class="title">{{ title }}</span>
+  <div id="aspectTypeSizes" ref="aspectTypeSizes">
+    <span class="title">{{ title }} <a>Таблица размеров</a></span>
     <div class="variants">
       <template v-for="variant in variants">
         <a-tag
@@ -8,14 +8,14 @@
           :class="[ variant.availability !== 'inStock' ? 'disabled' : '' ]"
           :color="variant.active ? '#005bff': ''"
         >
-          <a-tooltip :getPopupContainer="() => { return $refs.aspectTypeColors }">
+          <a-tooltip :getPopupContainer="() => { return $refs.aspectTypeSizes }">
             <template slot="title">
               <div class="variant-tooltip">
                 <div class="variant-image">
                   <img :src="variant.data.coverImage" />
                 </div>
                 <a-divider type="horizontal" />
-                  <strong class="variant-color-title">
+                  <strong class="variant-size-title">
                     {{ variant.data.textRs[0].content }}
                   </strong>
                 <a-divider type="horizontal" />
@@ -27,13 +27,7 @@
               </div>
             </template>
             <router-link :to="{ name: 'Product', query: { url: variant.link } }">
-              <template v-for="(color, i) in variant.data.colors">
-                <a-badge
-                  :key="i"
-                  :color="color"
-                  :class="'variant-color'"
-                />
-              </template>
+              {{ variant.data.textRs[0].content }}
             </router-link>
           </a-tooltip>
         </a-tag>
@@ -46,7 +40,7 @@
 import { head as _head } from 'lodash'
 
 export default {
-  name: 'AspectTypeColors',
+  name: 'AspectTypeSizes',
 
   props: {
     aspect: {
@@ -68,21 +62,13 @@ export default {
 </script>
 
 <style>
-#aspectTypeColors .ant-tooltip-inner {
+#aspectTypeSizes .ant-tooltip-inner {
   background-color: white;
-}
-.variants .ant-tag .variant-color .ant-badge-status-dot {
-  width: 24px !important;
-  height: 24px !important;
-  border: 1px black solid;
-}
-.variants .ant-tag .variant-color .ant-badge-status-text {
-  display: none;
 }
 </style>
 
 <style scoped>
-#aspectTypeColors {
+#aspectTypeSizes {
   display: flex;
   flex-direction: column;
 }
@@ -93,15 +79,14 @@ export default {
   flex-direction: row;
 }
 .variants .ant-tag {
+  color: black;
+  font-weight: bold;
   padding: 7px 16px;
   background-color: white;
   border: 2px solid #f2f5f9;
 }
 .variants .ant-tag.disabled {
   background-color: gray;
-}
-.variants .ant-tag .variant-color:nth-child(2n) {
-  margin: 0 5px;
 }
 .variant-tooltip {
 
@@ -116,7 +101,7 @@ export default {
   height: 100%;
   object-fit: contain;
 }
-.variant-tooltip .variant-color-title {
+.variant-tooltip .variant-size-title {
   display: flex;
   color: black;
   justify-content: center;
