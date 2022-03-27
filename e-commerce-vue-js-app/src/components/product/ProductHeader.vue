@@ -39,6 +39,14 @@
               <a-col>
                 <a-icon type="share-alt" /> Поделиться
               </a-col>
+              <a-col>
+                <a
+                  :href="currentPageUrl"
+                  target="_blank"
+                >
+                  <a-icon type="global" /> Страница в OZON
+                </a>
+              </a-col>
             </a-row>
           </a-col>
           <a-col :span="8">
@@ -74,6 +82,15 @@ export default {
   },
 
   computed: {
+    layoutTrackingInfo() {
+      if (this.product?.layoutTrackingInfo) {
+        return JSON.parse(this.product?.layoutTrackingInfo)
+      }
+      return null
+    },
+    currentPageUrl() {
+      return this.layoutTrackingInfo?.currentPageUrl
+    },
     widgets() {
       return this.product?.widgetStates
     },
