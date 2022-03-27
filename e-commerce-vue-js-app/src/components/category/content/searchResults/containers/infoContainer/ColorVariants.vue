@@ -1,17 +1,15 @@
 <template>
   <div id="colorVariants">
     <template v-for="(colorVariant, i) in colorVariantsItems">
-      <template v-for="(color, j) in colorVariant.hex">
-        <a-tag
-          :key="`${i} - ${j}`"
-          :class="'tag'"
-        >
-          <a-badge
-            :color="color"
-            :class="'color-variants-item'"
-          />
-        </a-tag>
-      </template>
+      <a-tag
+        :key="i"
+        :class="'tag'"
+      >
+        <ColorfulBadge
+          :colors="colorVariant.hex"
+          :className="'color-variants-item'"
+        />
+      </a-tag>
     </template>
     <span v-if="colorVariantsText">{{ colorVariantsText }}</span>
   </div>
@@ -19,9 +17,14 @@
 
 <script>
 import { find as _find } from 'lodash'
+import ColorfulBadge from '@/components/common/ColorfulBadge'
 
 export default {
   name: 'ColorVariants',
+
+  components: {
+    ColorfulBadge,
+  },
 
   props: {
     item: {

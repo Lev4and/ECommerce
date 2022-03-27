@@ -27,13 +27,10 @@
               </div>
             </template>
             <router-link :to="{ name: 'Product', query: { url: variant.link } }">
-              <template v-for="(color, i) in variant.data.colors">
-                <a-badge
-                  :key="i"
-                  :color="color"
-                  :class="'variant-color'"
-                />
-              </template>
+              <ColorfulBadge
+                :colors="variant.data.colors"
+                :className="'variant-color'"
+              />
             </router-link>
           </a-tooltip>
         </a-tag>
@@ -44,9 +41,14 @@
 
 <script>
 import { head as _head } from 'lodash'
+import ColorfulBadge from '@/components/common/ColorfulBadge'
 
 export default {
   name: 'AspectTypeColors',
+
+  components: {
+    ColorfulBadge,
+  },
 
   props: {
     aspect: {
