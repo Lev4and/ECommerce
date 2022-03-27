@@ -13,7 +13,11 @@
           :key="value.key"
           :value="value.key"
         >
-          {{ value.color.name }}
+          <a-badge
+            :class="'color-value'"
+            :color="`#${value.color.hex}`"
+            :text="value.color.name"
+          />
         </a-checkbox>
       </template>
     </a-checkbox-group>
@@ -47,6 +51,21 @@ export default {
   },
 }
 </script>
+
+<style>
+div.checkbox-group .color-value {
+  display: inline;
+}
+div.checkbox-group .color-value .ant-badge-status-dot {
+  width: 14px !important;
+  height: 14px !important;
+  border: 1px black solid;
+}
+div.checkbox-group .color-value .ant-badge-status-text {
+  font-size: 16px;
+  text-transform: capitalize;
+}
+</style>
 
 <style scoped>
 div.checkbox-group {
