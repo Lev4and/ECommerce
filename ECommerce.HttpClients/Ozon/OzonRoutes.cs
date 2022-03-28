@@ -27,5 +27,7 @@
         public const string ProductReviewsQuery = "widget/json/v2";
 
         public const string ProductCharacteristicsQuery = "page/json/v2";
+
+        public const string ProductGetCommentsByReviewIdQuery = "_action/rpGetCommentsByReviewId";
     }
 }

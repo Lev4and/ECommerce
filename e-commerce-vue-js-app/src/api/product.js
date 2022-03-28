@@ -20,3 +20,8 @@ export const getReviewsListing = async (url, asyncData, page) => {
   const config = { params: { url: url, async_data: asyncData, p: page } }
   return await responseGetAsync(client, '/api/product/reviews/list/', config)
 }
+
+export const getCommentsByReview = async (reviewId, limit, offset) => {
+  const config = { params: { reviewId: reviewId, limit: limit, offset: offset } }
+  return await responseGetAsync(client, '/api/product/reviews/comments/', config)
+}

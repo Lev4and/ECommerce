@@ -75,12 +75,23 @@
         <a-col :span="24">
           <ProductTagsList :product="characteristics" />
         </a-col>
+        <a-col
+          v-if="webReviewGalleryAsyncData"
+          :span="24"
+        >
+          <ProductReviewsQuestions
+            :product="reviews"
+            :productUrl="productPageInfoUrl"
+            :asyncData="webReviewGalleryAsyncData"
+          />
+        </a-col>
       </a-row>
     </a-spin>
   </div>
 </template>
 
 <script>
+import { find as _find } from 'lodash'
 import API from '@/api'
 import { getWidget } from '@/services/utils/widgetsUtils'
 import ProductBreadcrumb from '@/components/product/ProductBreadcrumb'
@@ -96,6 +107,7 @@ import ProductGoods from '@/components/product/ProductGoods'
 import ProductDescription from '@/components/product/ProductDescription'
 import ProductCharacteristics from '@/components/product/ProductCharacteristics'
 import ProductTagsList from '@/components/product/ProductTagsList'
+import ProductReviewsQuestions from '@/components/product/ProductReviewsQuestions'
 
 export default {
   name: 'Product',
@@ -114,12 +126,14 @@ export default {
     ProductDescription,
     ProductCharacteristics,
     ProductTagsList,
+    ProductReviewsQuestions,
   },
 
   data: () => ({
     isLoading: false,
     characteristics: null,
     reviews: null,
+    reviews2: null,
     product: null,
   }),
 
@@ -127,11 +141,17 @@ export default {
     productUrl() {
       return this.$route.query.url
     },
+    productPageInfoUrl() {
+      return this.product?.pageInfo?.url
+    },
     characteristicsUrl() {
       return getWidget(this.product?.widgetStates, 'paginator')?.nextPage
     },
     reviewsUrl() {
       return getWidget(this.characteristics?.widgetStates, 'paginator')?.nextPage
+    },
+    webReviewGalleryAsyncData() {
+      return _find(this.product?.layout, (layout) => layout.component === 'webReviewGallery')?.asyncData
     },
   },
 

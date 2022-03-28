@@ -129,5 +129,50 @@ namespace ECommerce.HttpClients.Ozon
 
             return (await GetStringProductReviewsAsync(productUrl, asyncData, page)).GetJsonResult<Reviews>();
         }
+
+        public async Task<string> GetStringGetCommentsByReviewIdAsync(int reviewId, int limit, int offset)
+        {
+            if (reviewId <= 0)
+            {
+                throw new ArgumentOutOfRangeException("page", "The review id must not be less than or equal to zero.");
+            }
+
+            if (limit <= 0)
+            {
+                throw new ArgumentOutOfRangeException("limit", "The limit must not be less than or equal to zero.");
+            }
+
+            if (offset < 0)
+            {
+                throw new ArgumentOutOfRangeException("offset", "The offset must not be less than to zero.");
+            }
+
+            UseHeaders(OzonHeaders.JsonHeaders);
+            UseCookie();
+
+            return await (await Client.PostAsync($"{OzonRoutes.ProductGetCommentsByReviewIdQuery}",
+                new StringContent(JsonConvert.SerializeObject(new GetCommentsByReviewIdRequestBody(reviewId, limit, offset)),
+                    Encoding.UTF8, "application/json"))).GetStringResultAsync();
+        }
+
+        public async Task<CommentsByReview> GetCommentsByReviewIdAsync(int reviewId, int limit, int offset)
+        {
+            if (reviewId <= 0)
+            {
+                throw new ArgumentOutOfRangeException("page", "The review id must not be less than or equal to zero.");
+            }
+
+            if (limit <= 0)
+            {
+                throw new ArgumentOutOfRangeException("limit", "The limit must not be less than or equal to zero.");
+            }
+
+            if (offset < 0)
+            {
+                throw new ArgumentOutOfRangeException("offset", "The offset must not be less than to zero.");
+            }
+
+            return (await GetStringGetCommentsByReviewIdAsync(reviewId, limit, offset)).GetJsonResult<CommentsByReview>();
+        }
     }
 }

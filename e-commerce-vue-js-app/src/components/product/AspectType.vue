@@ -1,6 +1,6 @@
 <template>
   <div id="aspectType">
-    <template v-if="aspect.type === 'textBar'">
+    <template v-if="aspect.type === 'textBar' || aspect.type === 'textBarIcon' || aspect.type === 'carousel'">
       <AspectTypeTextBar :aspect="aspect" />
     </template>
     <template v-else-if="aspect.type === 'colors' || aspect.type === 'colorsMix'">

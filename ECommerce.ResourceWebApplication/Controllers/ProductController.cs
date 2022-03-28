@@ -66,5 +66,18 @@ namespace ECommerce.ResourceWebApplication.Controllers
 
             return BadRequest();
         }
+
+        [HttpGet]
+        [Route("reviews/comments")]
+        [ProducesResponseType(typeof(CommentsByReview), 200)]
+        public async Task<IActionResult> Comments([Required][FromQuery(Name = "reviewId")] int reviewId, [Required][FromQuery(Name = "limit")] int limit, [Required][FromQuery(Name = "offset")] int offset)
+        {
+            if (reviewId > 0 && limit > 0 && offset >= 0)
+            {
+                return Ok(await _httpContext.Ozon.Product.GetCommentsByReviewIdAsync(reviewId, limit, offset));
+            }
+
+            return BadRequest();
+        }
     }
 }

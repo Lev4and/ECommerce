@@ -83,5 +83,13 @@ namespace ECommerce.HttpClients.Tests.Ozon
             productReviews.Should().NotBeNull();
             productCharacteristics.Should().NotBeNull();
         }
+
+        [Fact]
+        public async Task GetCommentsByReviewIdAsync_WithRequestBodyParam_ReturnNotBeNullResponse()
+        {
+            var response = await _httpContext.Ozon.Product.GetCommentsByReviewIdAsync(45617368, 10, 1);
+
+            response.Should().NotBeNull();
+        }
     }
 }
